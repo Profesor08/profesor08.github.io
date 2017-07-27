@@ -65,6 +65,8 @@ $('.scrollspy').scrollSpy({
 
 $('.materialboxed').materialbox();
 
+tippy('.socials a')
+
 floatingMenu(".header");
 
 document.querySelector("#contact-form").addEventListener("submit", function (event)

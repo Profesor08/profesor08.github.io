@@ -96,6 +96,25 @@ section {
 /**
  * Created by Profesor08 on 27.07.2017.
  */
+.tippy-tooltip {
+  /* Your styling here. Example: */
+  background-color: #FF9800;
+  border: 1px solid orangered;
+}
+.tippy-tooltip [x-arrow] {
+  /* Your arrow styling here. */
+}
+.tippy-tooltip .tippy-tooltip-content {
+  /* Your styling here. Example: */
+  color: #FFFFFF;
+}
+.tippy-tooltip [x-circle] {
+  /* Your styling here. Example: */
+  background-color: #FF9800;
+}
+/**
+ * Created by Profesor08 on 27.07.2017.
+ */
 .info-section {
   font-family: 'Merriweather', sans-serif;
   padding: 50px 0;
