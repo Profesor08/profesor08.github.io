@@ -6,73 +6,293 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Web Developer</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic&subset=latin,latin-ext">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:300,400,700&amp;subset=latin,latin-ext">
-  <link rel="stylesheet" type="text/css" href="assets/font-awesome-4.6.3/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Slabo+27px|Artifika|Merriweather" rel="stylesheet">
+  <link href="assets/fonts/font-mfizz-2.4.1/font-mfizz.css" rel="stylesheet">
+  <link href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="assets/third_party/materialize/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  
+  <script type="text/javascript" src="assets/third_party/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="assets/third_party/materialize/js/materialize.min.js"></script>
+  <script type="text/javascript" src="assets/third_party/particles/particles.js"></script>
+  <script type="text/javascript" src="assets/third_party/axios-master/dist/axios.min.js"></script>
+
 </head>
 <body>
 
-<a href="#home" class="scrollTop fa fa-angle-up"></a>
-
-<div class="floating-menu">
+<header class="header elite">
   <div class="container">
-    <div class="menuToggle fa fa-bars" aria-hidden="true"></div>
-    <nav class="menu">
-      <a href="#home" class="active">home</a>
-      <a href="#about">about me</a>
-      <a href="#experience">experience</a>
-      <a href="#portfolio">portfolio</a>
-      <a href="#contact">contact</a>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">e-WebDev</a>
+        <a href="#" data-activates="top-nav-dropdown" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#home">home</a></li>
+          <li><a href="#about">about me</a></li>
+          <li><a href="#experience">experience</a></li>
+          <li><a href="#skills">skills</a></li>
+          <li><a href="#portfolio">works</a></li>
+          <li><a href="#contact">contact</a></li>
+        </ul>
+        <ul id="top-nav-dropdown" class="dropdown-content">
+          <li><a href="#home">home</a></li>
+          <li><a href="#about">about me</a></li>
+          <li><a href="#experience">experience</a></li>
+          <li><a href="#skills">skills</a></li>
+          <li><a href="#portfolio">works</a></li>
+          <li class="divider"></li>
+          <li><a href="#contact">contact</a></li>
+        </ul>
+      </div>
     </nav>
-    <nav class="lang">
-      <a href="" class="active">en</a>
-      <a href="">ro</a>
-      <a href="">ру</a>
-    </nav>
   </div>
-</div>
+</header>
 
-<section class="home" id="home">
-  <div id="particles"></div>
-  <div class="container">
-    <h1>Hi, it's me, Profesor08</h1>
-    <h2>A Web Developer</h2>
-  </div>
-</section>
+<main class="main">
+  <section class="home scrollspy" id="home">
+    <div id="particles" class="particles"></div>
+    <div class="container">
+      <div class="greeting">
+        <div class="phrase-row">
+          <div class="phrase">Hey there</div>
+        </div>
+        <div class="phrase-row">
+          <div class="phrase">It's me,
+            <div class="me">Baltag Oleg</div>
+          </div>
+        </div>
+        <div class="phrase-row">
+          <div class="phrase welcome">I Welcome you on my website</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="about info-section scrollspy" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col l10 offset-l1">
+          <h2>What do you have to know about me?</h2>
+          <p>I am a Web Developer. I create clean, compatible and responsive HTML, CSS markup based on design templates,
+            using popular frameworks such as Materialize, Bootstrap. I use popular javascript libraries and frameworks like vue.js, Jquery
+            to make website looks dynamic and interactive. But mostly prefer to make all by myself, I like it.</p>
+          <p>Website communication between front-end and back-end I implement via server-rendering or AJAX.</p>
+          <p>Back-end part of website I develop on PHP of node.js using popular frameworks. For data storage I use MySQL or MSSQL databases.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="experience info-section scrollspy" id="experience">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12">
+          <h2>My studies and work</h2>
+        </div>
+      </div>
+      
+      <div class="vertical-timeline">
+        
+        <div class="timeline-block">
+          <div class="icon icon-left blue"></div>
+          <div class="content content-left card-panel indigo">
+            <h3>Sep 2010 - Jul 2013</h3>
+            <div class="card-content white-text">
+              <p class="activity">Universitatea de Stat din Moldova, Chisinau</p>
+              <p class="specialization">Facultatea de Matematica si Informatica, specialitatea Informatica</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-block">
+          <div class="icon yellow"></div>
+          <div class="content content-right card-panel orange">
+            <h3>Aug 2013 - Jun 2014</h3>
+            <div class="card-content white-text">
+              <p class="activity">Freelance</p>
+              <p class="specialization">Front-end Developer</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-block">
+          <div class="icon icon-left green"></div>
+          <div class="content content-left card-panel light-green">
+            <h3>Sep 2014 - <span id="now-date"></span></h3>
+            <div class="card-content  white-text">
+              <p class="activity">Freelance</p>
+              <p class="specialization">Full-stack Web Developer</p>
+              <ul>
+                <li>Custom client-server web modules</li>
+                <li>Mini-games (Lottery)</li>
+                <li>Integration of third party API's (Socials, Payment Systems)</li>
+                <li>Server-side applications for Windows Server</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-block">
+          <div class="icon purple darken-2"></div>
+          <div class="content content-right card-panel purple lighten-1">
+            <h3>now</h3>
+            <div class="card-content white-text">
+              <p class="activity">Ready for new experience</p>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </section>
+  
+  <section class="skills info-section scrollspy" id="skills">
+    <div class="container">
+      <h2>My Skills</h2>
+      
+      <div class="row">
+        <div class="col s12 m4 font-end">
+          <h3>Languages</h3>
+          <ul>
+            <li><i class="icon-javascript"></i>JavaScript</li>
+            <li><i class="icon-php"></i>PHP</li>
+            <li><i class="icon-html5"></i>HTML</li>
+            <li><i class="icon-css3"></i>CSS</li>
+            <li><i class="icon-csharp"></i>C#</li>
+            <li><i class="icon-java"></i>Java</li>
+            <li><img src="assets/images/icons/less.png">Less</li>
+          </ul>
+        </div>
+        <div class="col s12 m4 font-backend">
+          <h3>Frameworks</h3>
+          <ul>
+            <li><img src="assets/images/icons/materialize.png">Materialize</li>
+            <li><img src="assets/images/icons/vue.png">Vue.js</li>
+            <li><i class="icon-jquery"></i>Jquery</li>
+            <li><i class="icon-bootstrap"></i>Bootstrap</li>
+            <li><i class="icon-codeigniter"></i>CodeIgniter</li>
+          </ul>
+        </div>
+        <div class="col s12 m4 font-backend">
+          <h3>Software</h3>
+          <ul>
+            <li><img src="assets/images/icons/phpstorm-icon.png">PhpStorm</li>
+            <li><img src="assets/images/icons/idea.png">IntelliJ IDEA</li>
+            <li><svg enable-background="new 0 0 512 512" id="Layer_1" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M175.2,289.1c-7.1,5.4-14.2,10.7-21.2,16.1c-37.9,28.9-75.7,57.7-113.6,86.6c-2.1,1.6-3.7,2-6.2,0.7   c-7.6-4.1-15.5-7.7-23.1-11.9c-1.6-0.9-3.1-3.5-3.1-5.3c-0.1-79-0.1-158,0-237c0-1.8,1.6-4.3,3.2-5.2c7.3-4,14.9-7.5,22.2-11.4   c3-1.6,5.1-1.4,7.9,0.7c44.6,34.1,89.2,68,134.3,102.4c7.7-7.4,15.3-14.7,22.9-22.1c57.9-56.5,115.8-113,173.8-169.5   c8.7-8.5,17.6-16.8,26.2-25.4c2.5-2.5,4.6-3,7.8-1.7c28.5,11.6,57.1,23,85.7,34.5c2.5,1,4.9,2.3,7.4,2.9c5.2,1.2,6.7,4.1,6.7,9.5   c-0.2,136.1-0.1,272.3,0,408.4c0,4.5-1.1,6.6-5.5,8.3c-31.6,12.4-63.1,25.1-94.6,37.8c-2.9,1.2-4.6,0.9-6.9-1.3   C335.6,444.4,272,382.7,208.5,321c-10-9.7-20.1-19.5-30.1-29.2C177.5,291,176.5,290.2,175.2,289.1z M256.7,256.5   c43,32.4,85.2,64.2,127.9,96.3c0-64.4,0-127.8,0-191.9C341.8,192.9,299.5,224.5,256.7,256.5z M116.7,256.6   c-21.4-19.1-42.4-37.9-64.2-57.3c0,38.9,0,76.5,0,115.5C74.3,295,95.3,276,116.7,256.6z"/></g></svg>Microsoft Visual Studio</li>
+            <li><i class="fa fa-picture-o"></i>Photoshop</li>
+            <li><i class="icon-mysql"></i>DBMS for MySQL</li>
+            <li><i class="icon-mssql"></i>DBMS for MSSQL</li>
+            <li><i class="icon-nginx"></i>Nginx</li>
+            <li><i class="icon-nodejs"></i>Node.js</li>
+            <li><i class="icon-npm"></i>NPM</li>
+            <li class="bug-fix"><i class="icon-git"></i>Git</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="portfolio info-section scrollspy" id="portfolio">
+    <div class="container">
+      <h2>My Works</h2>
+      
+      <div class="row" id="works-grid">
+        <div class="col s12 m6 l4">
+          <img class="materialboxed" src="assets/images/works/image-1.png" alt="">
+        </div>
+        <div class="col s12 m6 l4">
+          <img class="materialboxed" src="assets/images/works/image-2.jpg" alt="">
+        </div>
+        <div class="col s12 m6 l4">
+          <img class="materialboxed" src="assets/images/works/image-3.jpg" alt="">
+        </div>
+        <div class="col s12 m6 l4">
+          <img class="materialboxed" src="assets/images/works/image-4.jpg" alt="">
+        </div>
+        <div class="col s12 m6 l4">
+          <img class="materialboxed" src="assets/images/works/image-5.jpg" alt="">
+        </div>
+        <div class="col s12 m6 l4">
+          <img class="materialboxed" src="assets/images/works/image-6.jpg" alt="">
+        </div>
+        <div class="col s12 m6 l4">
+          <img class="materialboxed" src="assets/images/works/image-7.jpg" alt="">
+        </div>
+        <div class="col s12 m6 l4">
+          <img class="materialboxed" src="assets/images/works/image-9.jpg" alt="">
+        </div>
+        <div class="col s12 m6 l4">
+          <img class="materialboxed" src="assets/images/works/image-10.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="contact info-section scrollspy" id="contact">
+    <div class="container">
+      
+      <h2>Contact Me</h2>
+      
+      <div class="row">
+        <form class="col m8 offset-m2" id="contact-form">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="name" name="name" type="text" class="validate" value="demo">
+              <label for="name">Your Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="email" name="email" type="email" class="validate" value="demo@mail.com">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea1" name="message" class="materialize-textarea">Lorem Ipsum</textarea>
+              <label for="textarea1">Message</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <button class="waves-effect waves-light btn orange">Send <i class="fa fa-envelope-o"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+  
+      <h2>Contacts</h2>
+  
+      <div class="row">
+        <div class="col m6 offset-m3">
+          <div class="row">
+            <div class="col m6 center-align">
+              <i class="fa fa-envelope-o fa-3x"></i>
+              <p><a href="mailto:online7890@gmail.com">online7890@gmail.com</a></p>
+            </div>
+            <div class="col m6 center-align">
+              <i class="fa fa-skype fa-3x"></i>
+              <p><a href="skype:profesor08">profesor08</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="socials">
+        <a href="https://www.facebook.com/profile.php?id=100001541095447"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="https://vk.com/profesor08"><i class="fa fa-vk" aria-hidden="true"></i></a>
+        <a href="http://google.com/+ОлегБалтаг"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+      </div>
+      <div class="author">Designed by Baltag Oleg</div>
+    </div>
+  </footer>
+</main>
 
-<section class="home" id="about">
-  <div class="container">
-    <h1>Hi, it's me, Profesor08</h1>
-    <h2>A Web Developer</h2>
-  </div>
-</section>
-
-<section class="home" id="experience">
-  <div class="container">
-    <h1>Hi, it's me, Profesor08</h1>
-    <h2>A Web Developer</h2>
-  </div>
-</section>
-
-<section class="home" id="portfolio">
-  <div class="container">
-    <h1>Hi, it's me, Profesor08</h1>
-    <h2>A Web Developer</h2>
-  </div>
-</section>
-
-<section class="home" id="contact">
-  <div class="container">
-    <h1>Hi, it's me, Profesor08</h1>
-    <h2>A Web Developer</h2>
-  </div>
-</section>
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="assets/js/particles.js"></script>
-<script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/app.js"></script>
 </body>
 </html>

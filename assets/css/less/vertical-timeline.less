@@ -1,0 +1,228 @@
+/**
+ * Created by Profesor08 on 26.07.2017.
+ */
+
+.vertical-timeline {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: #FFA500;
+  }
+
+  .timeline-block {
+    position: relative;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+      position: absolute;
+      top: 17px;
+      left: 50%;
+      transform: translate3d(-50%, 0, 0);
+      color: #FFFFFF;
+    }
+
+    .content {
+
+      h3 {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(50px);
+        font-size: 16px;
+        color: #7f8c97;
+      }
+
+      &.card-panel {
+        width: 41.6666666667%;
+        padding: 0;
+        display: inline-block;
+      }
+
+      .card-content {
+        position: relative;
+        padding: 24px;
+
+        .activity {
+          margin-top: 0;
+          text-align: left;
+        }
+
+        .specialization {
+          font-style: italic;
+          text-align: left;
+        }
+
+        ul {
+          li {
+            padding-left: 15px;
+            position: relative;
+            font-size: 0.9em;
+
+            &:before {
+              content: '';
+              display: inline-block;
+              width: 4px;
+              height: 4px;
+              border: 1px solid #FFFFFF;
+              border-radius: 50%;
+              position: absolute;
+              top: 50%;
+              left: 0;
+              transform: translate3d(50%, -50%, 0);
+            }
+          }
+        }
+
+        &:before {
+          position: absolute;
+          content: '';
+          left: 0;
+          top: 12px;
+          border: 10px solid transparent;
+          border-right: 10px solid #3f51b5;
+          transform: translateX(-100%);
+        }
+      }
+
+      &.indigo .card-content:before {
+        border-color: transparent;
+        border-right-color: #3f51b5;
+      }
+
+      &.orange .card-content:before {
+        border-color: transparent;
+        border-right-color: #ff9800;
+      }
+
+      &.light-green .card-content:before {
+        border-color: transparent;
+        border-right-color: #8bc34a;
+      }
+
+      &.amber .card-content:before {
+        border-color: transparent;
+        border-right-color: #ffc107;
+      }
+
+      &.purple.lighten-1 .card-content:before {
+        border-color: transparent;
+        border-right-color: #ab47bc;
+      }
+
+      &.content-right {
+        margin-left: 58.333333333%;
+
+        h3 {
+          transform: translateX(-100%);
+          text-align: right;
+          padding-right: 50px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+
+  .vertical-timeline {
+    .timeline-block {
+      .icon {
+        left: 0;
+        transform: translate3d(-50%, 0, 0);
+        top: 36px;
+      }
+
+      .content {
+        margin-left: 50px;
+
+        &.content-right {
+          margin-left: 50px;
+        }
+
+        &.card-panel {
+          width: auto;
+        }
+
+        &.content-right h3, h3 {
+          position: static;
+          transform: translate3d(0, 0, 0);
+          padding: 14px 24px 0 24px;
+          color: #FFFFFF;
+          margin-bottom: 0;
+          text-align: left;
+        }
+
+        .card-content {
+          padding: 14px 24px 14px 24px;
+
+          &:before {
+            top: -20px;
+            transform: translate3d(-100%, 0, 0);
+          }
+        }
+
+        .col {
+          width: 100%;
+        }
+      }
+    }
+
+    &:before {
+      left: 0;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@media only screen and (min-width: 993px) {
+
+  .vertical-timeline {
+    .content.content-left {
+      .card-content {
+        &:before {
+          content: '';
+          left: 100%;
+          top: 12px;
+          border: 10px solid transparent;
+          border-left: 10px solid #000000;
+          transform: translateX(0%);
+        }
+      }
+
+      &.indigo .card-content:before {
+        border-color: transparent;
+        border-left-color: #3f51b5;
+      }
+
+      &.orange .card-content:before {
+        border-color: transparent;
+        border-left-color: #ff9800;
+      }
+
+      &.light-green .card-content:before {
+        border-color: transparent;
+        border-left-color: #8bc34a;
+      }
+
+      &.amber .card-content:before {
+        border-color: transparent;
+        border-left-color: #ffc107;
+      }
+
+      &.purple.lighten-1 .card-content:before {
+        border-color: transparent;
+        border-left-color: #ab47bc;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+/**
+ * Created by Profesor08 on 25.07.2017.
+ */
+
+.portfolio {
+  background: #434343;
+  color: #FFFFFF;
+
+  .col {
+    padding: .28rem .5rem;
+    position: relative;
+
+    :after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+  }
+
+  img {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+  }
+}
