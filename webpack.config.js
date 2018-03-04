@@ -15,7 +15,7 @@ const babel = require("./webpack/babel");
 const clean = require("./webpack/clean");
 
 const sourcePath = path.join(__dirname, "src");
-const distPath = path.join(__dirname, "dist");
+const distPath = path.join(__dirname, "docs");
 
 const PATHS = {
   src: {
@@ -64,7 +64,7 @@ module.exports = function (env) {
   {
     return merge([
       clean([
-        "dist",
+        "docs",
       ], {
         root: __dirname,
         verbose: true,

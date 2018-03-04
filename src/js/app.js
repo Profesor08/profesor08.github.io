@@ -28,7 +28,7 @@ const hamburger = new Hamburger(".hamburger");
 const sidebar = new Sidebar(".sidebar");
 const mainContent = new MainContent(".main");
 
-PubSub.publish("openSidebar");
+// PubSub.publish("openSidebar");
 
 hamburger.on("open", function () {
   PubSub.publish("openSidebar");

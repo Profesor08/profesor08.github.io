@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Portfolio</title>
+<link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+<link rel="manifest" href="manifest.json">
+<meta name="msapplication-TileColor" content="#FF916E">
+<meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#FF916E">
+  <link href="./css/main.css" rel="stylesheet"></head>
+  <body class="is-loading">
+    <!-- https://www.nicolasriciotti.com/clients/lpc/#!en/home/exceptions-->
+    <!-- https://github.com/akella/angled-scroll-sections/blob/master/src/js/canvas.js-->
+    <!--.loading-overlay-->
+    <header class="header"></header>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="audio-button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="13" viewBox="0 0 20 13" xml:space="preserve">
+	<defs>
+		<filter id="f3" x="0" y="0" width="100%" height="100%">
+			<feOffset result="offOut" in="SourceAlpha" dx="20" dy="20" />
+			<feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+			<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+		</filter>
+	</defs>
+
+	<polygon class="audio-speaker" points="0,4.5 0,6.5 0,8.5 2,8.5 5,11.5 5,1.5 2,4.5"/>
+
+	<path class="audio-line-1" d="M7.747,3.17L7,3.833v0.049C7.618,4.557,8,5.481,8,6.5c0,1.02-0.382,1.943-1,2.618v0.049L7.747,9.83
+			C8.523,8.966,9,7.793,9,6.5S8.523,4.034,7.747,3.17z"/>
+
+	<path class="audio-line-2" d="M9.32,1.771L8.572,2.435C9.466,3.549,10,4.962,10,6.5s-0.534,2.952-1.427,4.064l0.747,0.664
+			C10.371,9.939,11,8.294,11,6.5C11,4.707,10.371,3.061,9.32,1.771z"/>
+
+	<path class="audio-line-3" d="M10.848,0.414l-0.752,0.668C11.286,2.56,12,4.445,12,6.5s-0.714,3.939-1.904,5.418l0.752,0.668
+			C12.191,10.93,13,8.81,13,6.5S12.191,2.07,10.848,0.414z"/>
+</svg>
+
+    </div>
+    <nav class="pagination">
+      <div class="page-item is-active" data-goto-page="home" data-toggle="tooltip" data-placement="right" title="Home"></div>
+      <div class="page-item" data-goto-page="about" data-toggle="tooltip" data-placement="right" title="About"></div>
+      <div class="page-item" data-goto-page="contact" data-toggle="tooltip" data-placement="right" title="Contact"></div>
+      <nav-fluid class="fluid"></nav-fluid>
+      <div class="fluid-item full-size"></div>
+      <div class="fluid-item"></div>
+      <div class="fluid-item"></div>
+      <div class="fluid-item"></div>
+      <div class="fluid-item"></div>
+      <div class="fluid-item"></div>
+      <div class="fluid-item"></div>
+      <div class="fluid-item"></div>
+    </nav>
+<div class="sidebar"></div>
+    <main class="main">
+      <section class="home d-flex align-items-center" data-slide="0">
+<div class="container-fluid d-flex">
+  <div class="greetings">
+    <h1>
+      I'm
+      Oleg,
+      web developer.
+    </h1>
+    <h2>Front End Developer</h2>
+  </div>
+</div>
+      </section>
+      <!--section.about(data-slide="1")-->
+      <!--section.contact(data-slide="2")-->
+    </main>
+    <div class="main-overlay"></div>
+    <div class="contact-overlay d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="text-center">Contact me</h2>
+          </div>
+          <div class="col-sm-12">
+            <form class="w-100" method="POST" action="/sendMessage">
+              <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8">
+                  <div class="form-group">
+                    <div class="material-input">
+                      <label>
+                        <div class="placeholder">Subject</div>
+                        <input class="form-control" type="text" name="subject">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                  <div class="form-group">
+                    <div class="material-input">
+                      <label>
+                        <div class="placeholder">Message</div>
+                        <textarea class="form-control" name="message" rows="3"></textarea>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                  <div class="form-group">
+                    <button class="btn btn-success">Send</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script type="text/javascript" src="js/main.js"></script></body>
+</html>
