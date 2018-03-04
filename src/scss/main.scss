@@ -1,0 +1,104 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "design/vars";
+@import "design/fonts";
+
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+section a {
+  $link-color: #007bff;
+  $link-hover-color: #0056b3;
+
+  color: $link-color;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  transition: ease all 300ms;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: $link-color;
+    transition: ease width 300ms;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    &:after {
+      width: 100%;
+      background: $link-hover-color;
+    }
+  }
+}
+
+[data-animate] {
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform-origin: 50% 50% 0;
+  opacity: 0;
+}
+
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  section {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+
+.main-overlay {
+  position: absolute;
+  z-index: 48;
+  top: 0;
+  left: -9999px;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+@import "design/loading";
+@import "design/hamburger";
+@import "design/audio-button";
+@import "design/contact-overlay";
+@import "design/pagination";
+@import "design/sidebar";
+@import "design/home";

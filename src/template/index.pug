@@ -1,0 +1,76 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1")
+    title Portfolio
+
+    include ./favicons
+
+  body.is-loading
+
+    // https://www.nicolasriciotti.com/clients/lpc/#!en/home/exceptions
+    // https://github.com/akella/angled-scroll-sections/blob/master/src/js/canvas.js
+
+    //.loading-overlay
+
+
+    header.header
+
+    .hamburger
+      .line
+      .line
+      .line
+
+    .audio-button
+      include ../images/icons/audio-button.svg
+
+    nav.pagination
+      .page-item.is-active(data-goto-page="home" data-toggle="tooltip" data-placement="right" title="Home")
+      .page-item(data-goto-page="about" data-toggle="tooltip" data-placement="right" title="About")
+      .page-item(data-goto-page="contact" data-toggle="tooltip" data-placement="right" title="Contact")
+      nav-fluid.fluid
+      .fluid-item.full-size
+      .fluid-item
+      .fluid-item
+      .fluid-item
+      .fluid-item
+      .fluid-item
+      .fluid-item
+      .fluid-item
+
+    include sidebar
+
+    main.main
+      section.home.d-flex.align-items-center(data-slide="0")
+        include sections-content/section-home
+
+      //section.about(data-slide="1")
+
+      //section.contact(data-slide="2")
+
+    .main-overlay
+
+    .contact-overlay.d-flex.align-items-center
+      .container
+        .row
+          .col-sm-12
+            h2.text-center Contact me
+          .col-sm-12
+            form.w-100(method="POST" action="/sendMessage")
+              .row.justify-content-center
+                .col-sm-12.col-md-8
+                  .form-group
+                    .material-input
+                      label
+                        .placeholder Subject
+                        input.form-control(type="text" name="subject")
+                .col-sm-12.col-md-8
+                  .form-group
+                    .material-input
+                      label
+                        .placeholder Message
+                        textarea.form-control(name="message" rows="3")
+                .col-sm-12.col-md-8
+                  .form-group
+                    button.btn.btn-success Send

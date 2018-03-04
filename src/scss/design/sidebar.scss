@@ -1,0 +1,19 @@
+@import "vars";
+
+.sidebar {
+  background: $sidebar-bg;
+  position: fixed;
+  z-index: 49;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 100vh;
+
+  @include media-breakpoint-up(md) {
+    min-width: 768px
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: 100vw;
+  }
+}

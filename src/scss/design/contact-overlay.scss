@@ -1,0 +1,60 @@
+.contact-overlay {
+  $border-color: #9e9e9e;
+  $border-focus-color: #fb8c00;
+
+  position: fixed;
+  z-index: 49;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+
+  .btn {
+    border-radius: 0;
+  }
+
+  .material-input {
+    margin: 10px 0 20px 0;
+    display: block;
+    position: relative;
+
+    .placeholder {
+      position: absolute;
+      top: 0;
+      transform: translateY(6px);
+      transition: ease all 300ms;
+      color: lighten($border-color, 10%);
+
+      &:hover {
+        cursor: text;
+      }
+    }
+
+    label {
+      display: block;
+      width: 100%;
+    }
+
+    .form-control {
+      border: 0;
+      box-shadow: none;
+      border-bottom: 1px solid $border-color;
+      border-radius: 0;
+      transition: ease all 300ms;
+      width: 100%;
+    }
+
+    &.is-active .form-control, .form-control:focus {
+      box-shadow: 0 1px 0 0 $border-focus-color;
+      border-bottom: 1px solid $border-focus-color;
+    }
+
+    &.is-active .placeholder {
+      color: darken($border-color, 10%);
+      top: 0;
+      transform: translateY(-80%);
+      font-size: 70%;
+    }
+  }
+}

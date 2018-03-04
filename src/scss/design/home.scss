@@ -1,0 +1,105 @@
+.home {
+
+  .greetings {
+    transition: ease all 300ms;
+    margin-left: 15px;
+
+    @include media-breakpoint-up(sm) {
+      margin-left: 85px;
+      margin-top: 0;
+    }
+
+    @include media-breakpoint-up(lg) {
+      margin-left: 170px;
+      margin-top: 0;
+    }
+  }
+
+  h1 {
+    font-family: UnknownFont, sans-serif;
+    font-weight: 500;
+    font-size: 73px;
+    line-height: 63px;
+    color: white;
+    position: relative;
+
+    @include media-breakpoint-down(lg) {
+      font-size: 60px;
+      line-height: 53px;
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 50px;
+      line-height: 43px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      font-size: 40px;
+      line-height: 33px;
+    }
+
+    &:before, &:after {
+      position: absolute;
+      color: #515152;
+      font-size: 18px;
+    }
+
+    &:before {
+      content: "<h1>";
+      top: 0;
+    }
+
+    &:after {
+      content: "</h1>";
+      bottom: 0;
+      right: 0;
+      transform: translateX(120%);
+      opacity: 0;
+      transition: opacity .3s ease-out;
+    }
+
+    &.animation-finished {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  h2 {
+    margin-top: 9px;
+    font-weight: normal;
+    font-size: 13px;
+    font-family: "Open Sans", sans-serif;
+    letter-spacing: 3px;
+    color: #8d8d8d;
+
+    @include media-breakpoint-down(lg) {
+      font-size: 14px;
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 13px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      font-size: 11px;
+    }
+  }
+
+  .line {
+    //opacity: 0;
+  }
+
+  .letter {
+    //opacity: 0;
+  }
+
+  .letter, .word {
+    display: inline-block;
+    transition: color 0.15s ease-out;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}

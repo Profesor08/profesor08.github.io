@@ -1,0 +1,75 @@
+@import "vars";
+
+.pagination {
+  display: block;
+  position: fixed;
+  z-index: 20;
+  left: 50px;
+  top: 120px;
+  transform: translateX(-50%);
+  transition: ease all 300ms;
+
+  @include media-breakpoint-up(sm) {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .page-item {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: $pagination-point-color;
+    margin-bottom: 20px;
+    border-radius: 100%;
+    position: relative;
+    z-index: 1;
+    opacity: .8;
+    transition: ease all 300ms;
+    transform: scale(0.9);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.2);
+      background: $pagination-point-active-color;
+    }
+
+    &.is-active {
+      z-index: 3;
+      opacity: 1;
+      background: $pagination-point-active-color;
+    }
+  }
+
+  .fluid {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    border: 1px solid blue;
+  }
+
+  .fluid-item {
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 4px;
+    height: 4px;
+    background: $pagination-point-active-color;
+    border-radius: 100%;
+    z-index: 2;
+
+    &.full-size {
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+    }
+  }
+}

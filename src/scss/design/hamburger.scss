@@ -1,0 +1,58 @@
+@import "vars";
+
+.hamburger {
+
+  position: fixed;
+  z-index: 50;
+  top: 30px;
+  left: 30px;
+  width: $hamburger-width;
+  height: $hamburger-height;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: $hamburger-line-width;
+    background: $hamburger-color;
+    transition: all ease-in-out 0.4s;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2) {
+      top: $hamburger-height / 2 - $hamburger-line-width / 2;
+    }
+
+    &:nth-child(3) {
+      top: $hamburger-height - $hamburger-line-width;
+    }
+  }
+
+  &.is-open {
+    .line {
+      background: $hamburger-open-color;
+
+      &:nth-child(1) {
+        top: 50%;
+        transform: rotate(-45deg) translateY(-50%);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        left: 50%;
+        width: 0;
+      }
+
+      &:nth-child(3) {
+        top: 50%;
+        transform: rotate(45deg) translateY(-50%);
+      }
+    }
+  }
+}
