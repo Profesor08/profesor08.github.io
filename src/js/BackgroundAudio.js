@@ -10,8 +10,8 @@ import {TimelineMax} from "gsap";
   let sendReadyMessage = true;
   let maxVolume = .1;
 
-  // audio.src = require("../audio/Lord of the Isles - Teach Them No Hate.mp3");
-  audio.src = require("../audio/Portugal. The Man - Feel It Still.mp3");
+  audio.src = require("../audio/Lord of the Isles - Teach Them No Hate.mp3");
+  // audio.src = require("../audio/Portugal. The Man - Feel It Still.mp3");
 
   audio.volume = maxVolume;
   audio.loop = true;
@@ -19,8 +19,13 @@ import {TimelineMax} from "gsap";
 
   if (isMobile() === true)
   {
+    let activated = false;
     $(document.body).on("click", function () {
-      audio.play();
+      if (activated === false)
+      {
+        audio.play();
+        activated = true;
+      }
     });
   }
   else
@@ -37,7 +42,8 @@ import {TimelineMax} from "gsap";
   });
 
   audio.addEventListener("timeupdate", function () {
-    if (sendReadyMessage === true) {
+    if (sendReadyMessage === true)
+    {
       PubSub.publish("backgroundAudioReady", {
         audio: audio,
         analyser: analyser
@@ -50,7 +56,8 @@ import {TimelineMax} from "gsap";
   });
 
   PubSub.subscribe("audioButtonClicked", function () {
-    if (audio.paused === false) {
+    if (audio.paused === false)
+    {
       new TimelineMax({
         onComplete: function () {
           audio.pause();
@@ -60,7 +67,8 @@ import {TimelineMax} from "gsap";
         ease: Power2.easeOut
       });
     }
-    else {
+    else
+    {
       audio.play();
       new TimelineMax().to(audio, .5, {
         volume: maxVolume,

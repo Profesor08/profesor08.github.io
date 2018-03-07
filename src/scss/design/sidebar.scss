@@ -6,14 +6,34 @@
   z-index: 49;
   top: 0;
   left: 0;
-  width: 50vw;
+  width: 37vw;
   height: 100vh;
 
   @include media-breakpoint-up(md) {
-    min-width: 768px
+    //min-width: 768px
   }
 
   @include media-breakpoint-down(sm) {
     width: 100vw;
+  }
+
+  .logo {
+    path {
+      fill: white;
+      stroke: red;
+      stroke-width: 1;
+      stroke-dasharray: 10 20 30 40 50;
+      stroke-dashoffset: 1000;
+      animation: dash 80s linear alternate infinite;
+    }
+
+    @keyframes dash {
+      from {
+        stroke-dashoffset: 3000;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
   }
 }

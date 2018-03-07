@@ -1,0 +1,51 @@
+@import "vars";
+
+.navigation {
+
+  .nav-item {
+    margin: 10px 0;
+    text-decoration: none;
+
+    svg {
+      width: 32px;
+      height: auto;
+      margin-right: 30px;
+      fill: grey;
+      transition: ease fill 250ms;
+    }
+
+    .item-text {
+      font-size: 20px;
+      color: #2B2B2B;
+      transition: ease color 250ms;
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        width: 0;
+        height: 1px;
+
+        background: $secondary-color;
+        transition: ease width 250ms;
+      }
+    }
+
+    &:hover, &:focus, &.is-active {
+      svg {
+        fill: $secondary-color;
+      }
+
+      .item-text {
+        color: $secondary-color;
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

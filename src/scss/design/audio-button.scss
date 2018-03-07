@@ -20,12 +20,12 @@
       transition: ease fill 250ms;
 
       @include media-breakpoint-down(sm) {
-        fill: rgba(#242424, 0.7);
+        //fill: rgba(#242424, 0.7);
       }
     }
   }
 
-  &:hover {
+  &:hover, &:focus {
     cursor: pointer;
 
     svg {
@@ -36,6 +36,6 @@
   }
 
   .audio-speaker {
-    transform-origin: 50%;
+    transform-origin: 0 50%;
   }
 }

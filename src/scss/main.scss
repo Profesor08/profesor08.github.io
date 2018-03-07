@@ -9,7 +9,7 @@ body {
   position: relative;
 }
 
-section a {
+section a, a.design-link {
   $link-color: #007bff;
   $link-hover-color: #0056b3;
 
@@ -101,4 +101,6 @@ section a {
 @import "design/contact-overlay";
 @import "design/pagination";
 @import "design/sidebar";
+@import "design/navigation";
+@import "design/socials";
 @import "design/home";

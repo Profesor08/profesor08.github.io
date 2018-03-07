@@ -1,1 +1,31 @@
-.sidebar
+.sidebar.d-flex.flex-column.justify-content-center.align-items-center
+
+
+  .logo
+    include ../images/icons/logo.svg
+
+
+  nav.navigation.d-flex.flex-column
+    a.nav-item.d-flex.align-items-center(href="#" data-goto-page="home" role="button")
+      include ../images/icons/home.svg
+      .item-text Home
+
+    a.nav-item.d-flex.align-items-center(href="#" data-goto-page="about" role="button")
+      include ../images/icons/work.svg
+      .item-text Works
+
+    a.nav-item.d-flex.align-items-center(href="#" data-goto-page="contact" role="button")
+      include ../images/icons/mail.svg
+      .item-text Contact
+
+
+  .socials.d-flex.justify-content-center.align-items-center
+
+    a.social-link.d-flex.justify-content-center.align-items-center(href="https://google.com/+ОлегБалтаг" target="_blank")
+      include ../images/icons/google-plus.svg
+
+    a.social-link.d-flex.justify-content-center.align-items-center(href="https://github.com/profesor08/" target="_blank")
+      include ../images/icons/github.svg
+
+    a.social-link.d-flex.justify-content-center.align-items-center(href="https://codepen.io/Profesor08/" target="_blank")
+      include ../images/icons/codepen.svg

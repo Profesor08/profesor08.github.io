@@ -487,6 +487,7 @@ import isMobile from "is-mobile";
     let circles = [];
     let radiusMultiplier = 1;
     let isMobileDevice = isMobile();
+    let moveSpeed = .5;
 
     if (isMobileDevice === true) {
       radiusMultiplier = 0.5;
@@ -519,7 +520,7 @@ import isMobile from "is-mobile";
         let radius = frequencyData[i] / 3 * circles[i].radiusMultiplier;
 
         circles[i].position.x = width - i * Math.floor(width / 128) - 50;
-        circles[i].position.y += circles[i].speed * circles[i].direction;
+        circles[i].position.y += circles[i].speed * circles[i].direction * moveSpeed;
 
         if (circles[i].direction > 0) {
           if (circles[i].position.y >= height) {

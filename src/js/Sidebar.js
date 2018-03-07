@@ -52,6 +52,7 @@ export default class Sidebar
     PubSub.subscribe("mainOverlaySwipeLeft", (msg, event) => {
       PubSub.publish("closeSidebar");
     });
+
   }
 
   continueSidebarState(x)

@@ -2,7 +2,7 @@ import "normalize.css";
 import "../scss/main.scss";
 
 import "bootstrap/dist/js/bootstrap.bundle.min";
-// import "./Animator";
+
 // import "./ContactOverlay";
 // import "./MaterialInput";
 // import Particles from "./Particles";
@@ -17,6 +17,7 @@ import "./MainOverlay";
 import "./GreetingsAnimations";
 import "./BackgroundAudio";
 import "./AudioButton";
+
 // new Particles("particles");
 // $(".material-input").materialInput();
 

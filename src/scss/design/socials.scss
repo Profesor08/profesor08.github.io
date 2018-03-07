@@ -1,0 +1,49 @@
+@import "vars";
+
+.socials {
+  margin-top: 30px;
+
+  .social-link {
+    margin: 0 10px;
+
+    width: 40px;
+    height: 40px;
+
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 100%;
+      height: 100%;
+      border: 3px solid rgba(0, 0, 0, 0.15);
+      border-radius: 50%;
+
+      transition: ease all 250ms;
+    }
+
+    svg {
+      width: 20px;
+      height: auto;
+      fill: rgba(0, 0, 0, 0.6);
+
+      transition: ease fill 250ms;
+    }
+
+    &:hover, &:focus {
+      &:before {
+        width: 120%;
+        height: 120%;
+        border: 3px solid rgba($secondary-color, 0.3);
+      }
+
+      svg {
+        fill: $secondary-color;
+      }
+    }
+  }
+}
