@@ -24,7 +24,7 @@ import "./AudioButton";
 $("[data-toggle=\"tooltip\"]").tooltip();
 
 PubSub.publish("pageLoaded");
- 
+  
 const hamburger = new Hamburger(".hamburger");
 const sidebar = new Sidebar(".sidebar");
 const mainContent = new MainContent(".main");
