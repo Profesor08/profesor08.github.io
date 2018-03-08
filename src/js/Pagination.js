@@ -22,11 +22,7 @@ import {TimelineMax} from "gsap";
   {
     let targetTop = $items[currentIndex].offsetTop;
 
-    let tl = new TimelineMax({
-      onComplete: function () {
-        // $($items[currentIndex]).addClass("is-active");
-      }
-    });
+    let tl = new TimelineMax();
 
     let direction = Math.random() < .5 ? -1 : 1;
 
