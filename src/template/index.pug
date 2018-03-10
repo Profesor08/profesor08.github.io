@@ -27,9 +27,12 @@ html
 
     nav.pagination
       .page-item.is-active(data-goto-page="home" data-toggle="tooltip" data-placement="right" title="Home")
-      .page-item(data-goto-page="about" data-toggle="tooltip" data-placement="right" title="About")
+        .item-dot
+      .page-item(data-goto-page="works" data-toggle="tooltip" data-placement="right" title="About")
+        .item-dot
       .page-item(data-goto-page="contact" data-toggle="tooltip" data-placement="right" title="Contact")
-      nav-fluid.fluid
+        .item-dot
+
       .fluid-item.full-size
       .fluid-item
       .fluid-item
@@ -42,12 +45,14 @@ html
     include sidebar
 
     main.main
-      section.home.d-flex.align-items-center(data-slide="0")
+      section.home.is-active.align-items-center(data-page="home")
         include sections-content/section-home
 
-      //section.about(data-slide="1")
+      section.works.align-items-center(data-page="works")
+        //include sections-content/section-home
 
-      //section.contact(data-slide="2")
+      section.contact.align-items-center(data-page="contact")
+        include sections-content/section-contacts
 
     .main-overlay
 

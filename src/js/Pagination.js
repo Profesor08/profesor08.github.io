@@ -11,6 +11,7 @@ import {TimelineMax} from "gsap";
   let ready = true;
   let currentIndex = 0;
   let previousIndex = 0;
+  let currentPage = null;
 
   function setActiveItem(page)
   {
@@ -20,7 +21,7 @@ import {TimelineMax} from "gsap";
 
   function playFluidAnimation()
   {
-    let targetTop = $items[currentIndex].offsetTop;
+    let targetTop = $items[currentIndex].offsetTop + 10;
 
     let tl = new TimelineMax();
 
@@ -31,7 +32,7 @@ import {TimelineMax} from "gsap";
       ease: Power1.easeInOut,
       onUpdate: function () {
         let val = this.time() * (1 / .8);
-        let left = 5 * Math.sin(val * Math.PI) * direction;
+        let left = 5 * Math.sin(val * Math.PI) * direction + 10;
         this.target.style.setProperty("left", left + "px");
       }
     });
@@ -41,7 +42,7 @@ import {TimelineMax} from "gsap";
       ease: Power1.easeInOut,
       onUpdate: function () {
         let val = this.time() * (1 / .8);
-        let left = 3 + 5 * Math.sin(val * Math.PI) * direction;
+        let left = 3 + 5 * Math.sin(val * Math.PI) * direction + 10;
         this.target.style.setProperty("left", left + "px");
       }
     }, 0.1, "-=0.7");
@@ -52,9 +53,11 @@ import {TimelineMax} from "gsap";
   $items.on("click", function () {
     let page = $(this).data("goto-page");
 
-    PubSub.publish("gotoPage", {
-      to: page
-    });
+    if (page !== currentPage) {
+      PubSub.publish("gotoPage", {
+        to: page
+      });
+    }
   });
 
   PubSub.subscribe("gotoPage", function (msg, data) {

@@ -36,10 +36,12 @@
   },
   "dependencies": {
     "@pixi/filter-glow": "^2.5.0",
+    "axios": "^0.18.0",
     "gsap": "^1.20.3",
     "is-mobile": "^0.2.2",
     "jquery-mousewheel": "^3.1.13",
     "normalize.css": "^7.0.0",
+    "noty": "^3.2.0-beta",
     "pixi.js": "^4.7.0",
     "pubsub-js": "^1.5.7",
     "text-to-svg": "^3.1.3",

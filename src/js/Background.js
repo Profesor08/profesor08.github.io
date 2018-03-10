@@ -7,9 +7,13 @@ import isMobile from "is-mobile";
 
 (function () {
 
+  // Browser pixel floor fix. 0 - disabled
+  let additionalWidth = 0;
+  let additionalHeight = 0;
+
   // windows width / height
-  let width = $(window).width();
-  let height = $(window).height();
+  let width = $(window).width() + additionalWidth;
+  let height = $(window).height() + additionalHeight;
   let activeImageId = "home";
   let perlinOffset = 0;
 
@@ -20,7 +24,7 @@ import isMobile from "is-mobile";
       texture: require("../images/bg/1.jpg")
     },
     {
-      name: "about",
+      name: "works",
       texture: require("../images/bg/2.jpg")
     },
     {
@@ -59,15 +63,12 @@ import isMobile from "is-mobile";
   let nextImageBlurFilter = new PIXI.filters.BlurFilter();
   let activeImageBlurFilter = new PIXI.filters.BlurFilter();
 
-  // Browser pixel floor fix. 0 - disabled
-  let additionalWidth = 0;
-
   // Resize scene
 
   function resizeScene(data)
   {
     width = data.width + additionalWidth;
-    height = data.height;
+    height = data.height + additionalHeight;
 
     imageCover(activeImage, width, height);
     imageCover(nextImage, width, height);

@@ -32,6 +32,14 @@ import PubSub from "pubsub-js";
 
   });
 
+  PubSub.subscribe("openSidebar", (msg, data) => {
+    $button.addClass("on-sidebar");
+  });
+
+  PubSub.subscribe("closeSidebar", (msg, data) => {
+    $button.removeClass("on-sidebar");
+  });
+
   $button.on("click", function () {
     PubSub.publish("audioButtonClicked");
   });

@@ -10,8 +10,6 @@ import PubSub from "pubsub-js";
 
     let page = $(this).data("goto-page");
 
-    $items.removeClass("is-active");
-
     PubSub.publish("gotoPage", {
       to: page
     });
@@ -20,6 +18,7 @@ import PubSub from "pubsub-js";
   });
 
   PubSub.subscribe("gotoPage", function (msg, data) {
+    $items.removeClass("is-active");
     $nav.find(`.nav-item[data-goto-page="${data.to}"]`).addClass("is-active");
   });
 })();

@@ -2,11 +2,17 @@
 @import "design/vars";
 @import "design/fonts";
 
-body {
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
+html, body {
   position: relative;
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+
+  background: #2A2A2C;
 }
 
 section a, a.design-link {
@@ -61,16 +67,6 @@ section a, a.design-link {
   width: 100%;
   height: 100%;
 
-  section {
-    position: absolute;
-    z-index: 1;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
-
   .background {
     position: absolute;
     top: 0;
@@ -103,4 +99,6 @@ section a, a.design-link {
 @import "design/sidebar";
 @import "design/navigation";
 @import "design/socials";
+@import "design/pages";
 @import "design/home";
+@import "design/contact-form";

@@ -29,6 +29,8 @@ const PATHS = {
   }
 };
 
+process.noDeprecation = true;
+
 const common = merge([
   {
     entry: PATHS.src.js + "/app.js",

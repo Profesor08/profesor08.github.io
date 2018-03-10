@@ -1,5 +1,6 @@
 import PubSub from "pubsub-js";
 import {TimelineMax} from "gsap";
+import Hammer from "hammerjs";
 
 export default class Sidebar
 {
@@ -19,6 +20,12 @@ export default class Sidebar
       xPercent: 0
     }).pause();
 
+    const hammer = new Hammer(this.$sidebar.get(0));
+
+    hammer.on("swipeleft", function (e) {
+      PubSub.publish("closeSidebar");
+    });
+
     PubSub.subscribe("openSidebar", (msg, data) => {
       this.open();
     });
@@ -28,17 +35,15 @@ export default class Sidebar
     });
 
     PubSub.subscribe("mainContentPanRight", (msg, event) => {
-      // this.progress(event.deltaX);
+
     });
 
     PubSub.subscribe("mainContentPanLeft", (msg, event) => {
-      // this.progress(event.deltaX);
+
     });
 
     PubSub.subscribe("mainContentPanEnd", (msg, event) => {
-      // if (event.deltaTime >= 300) {
-      //   this.continueSidebarState(event.deltaX);
-      // }
+
     });
 
     PubSub.subscribe("mainContentSwipeRight", (msg, event) => {
@@ -75,20 +80,12 @@ export default class Sidebar
     let sidebarWidth = window.innerWidth * .375;
     let progress = x >= 0 ? x <= sidebarWidth * 2 ? x / sidebarWidth / 2 : 1 : 0;
 
-    if (this.isOpen === true)
-    {
-      // progress = 1 - progress;
-    }
-
     this.tl2.progress(progress);
   }
 
   open()
   {
     this.tl.clear()
-      // .set(this.$sidebar, {
-      //   x: -9999
-      // })
       .to(this.$sidebar, .5, {
         xPercent: 0,
         onUpdate: () => {
@@ -106,8 +103,5 @@ export default class Sidebar
           this.isOpen = false;
         }
       })
-      // .to(this.$sidebar, 0, {
-      //   // x: -9999
-      // });
   }
 }

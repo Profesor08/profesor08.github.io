@@ -1,0 +1,23 @@
+.container-fluid.d-flex.align-items-center.justify-content-center
+
+  .contact-form
+    h1 Contact me
+    p Asc your questions using form below...
+
+    form
+      .form-row
+        .form-group.col-md-6
+          input.form-control(type='text' name="name" placeholder='Name')
+          .control-underline
+        .form-group.col-md-6
+          input.form-control(type='email' name="email" placeholder='Email')
+          .control-underline
+      .form-group
+        input.form-control(type='text' name="subject" placeholder='Subject')
+        .control-underline
+      .form-group
+        textarea.form-control(rows='3' name="message" placeholder='Message')
+        .control-underline
+      .form-row.justify-content-end
+        button.btn.btn-primary(type='submit') Sign in
+

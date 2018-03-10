@@ -1,0 +1,75 @@
+@import "vars";
+
+.contact-form {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 15px;
+
+  [placeholder]:focus::-webkit-input-placeholder {
+    opacity: 0;
+  }
+  /* Firefox < 19 */
+  [placeholder]:focus:-moz-placeholder {
+    opacity: 0;
+  }
+  /* Firefox > 19 */
+  [placeholder]:focus::-moz-placeholder {
+    opacity: 0;
+  }
+  /* Internet Explorer 10 */
+  [placeholder]:focus:-ms-input-placeholder {
+    opacity: 0;
+  }
+
+  h1 {
+    color: $secondary-color;
+  }
+
+  p {
+    color: $primary-color;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .control-underline {
+    position: relative;
+    width: 0;
+    height: 0;
+    transition: ease width 350ms;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: $secondary-color;
+    }
+  }
+
+  .form-control {
+    background: #3A3C3D;
+    border: 0;
+    border-radius: 0;
+    height: 50px;
+    font-size: 16px;
+    color: #8d8d8d;
+    padding: 0 20px;
+
+    &:focus {
+      //box-shadow: 0 0 0 0.2rem rgba($secondary-color, 0.35);
+      box-shadow: none;
+
+      ~ .control-underline {
+        width: 100%;
+      }
+    }
+  }
+
+  textarea.form-control {
+    height: 50px;
+    min-height: 150px;
+    padding: 20px;
+  }
+}
