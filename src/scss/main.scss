@@ -15,6 +15,18 @@ html, body {
   background: #2A2A2C;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666;
+}
+
 section a, a.design-link {
   $link-color: #007bff;
   $link-hover-color: #0056b3;

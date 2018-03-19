@@ -397,6 +397,14 @@ import isMobile from "is-mobile";
       height: window.innerHeight
     });
 
+    ticker.add(function () {
+      if (window.innerWidth !== width || window.innerHeight !== height) {
+        resizeScene({
+          width: window.innerWidth,
+          height: window.innerHeight
+        });
+      }
+    });
 
     class VisualizationLine
     {

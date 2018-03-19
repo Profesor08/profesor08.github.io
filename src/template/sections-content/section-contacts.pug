@@ -1,4 +1,4 @@
-.container-fluid.d-flex.align-items-center.justify-content-center
+.container-fluid
 
   .contact-form
     h1 Contact me
@@ -12,12 +12,15 @@
         .form-group.col-md-6
           input.form-control(type='email' name="email" placeholder='Email')
           .control-underline
-      .form-group
-        input.form-control(type='text' name="subject" placeholder='Subject')
-        .control-underline
-      .form-group
-        textarea.form-control(rows='3' name="message" placeholder='Message')
-        .control-underline
-      .form-row.justify-content-end
-        button.btn.btn-primary(type='submit') Sign in
+      .form-row
+        .form-group.col-md-12
+          input.form-control(type='text' name="subject" placeholder='Subject')
+          .control-underline
+      .form-row
+        .form-group.col-md-12
+          textarea.form-control(rows='3' name="message" placeholder='Message')
+          .control-underline
+      .form-row
+        .form-group.col-md-12.d-flex.justify-content-end
+          button.btn.btn-primary(type='submit') Send
 

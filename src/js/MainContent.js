@@ -9,7 +9,7 @@ export default class MainContent
     this.$content = $(selector);
     this.tl = new TimelineMax();
     this.shifted = false;
-    const hammer = new Hammer(this.$content.get(0));
+    // const hammer = new Hammer(this.$content.get(0));
 
     // this.tl2 = new TimelineMax();
     //
@@ -20,37 +20,37 @@ export default class MainContent
     //   width: () => window.innerWidth / 100 * (100 - 37.4)
     // }).pause();
 
-    hammer.get("swipe").set({
-      direction: Hammer.DIRECTION_ALL
-    });
-
-    hammer.on("swipeup", function (e) {
-      PubSub.publish("swipeUp");
-    });
-
-    hammer.on("swipedown", function (e) {
-      PubSub.publish("swipeDown");
-    });
-
-    hammer.on("swipeleft", function (e) {
-      PubSub.publish("mainContentSwipeLeft");
-    });
-
-    hammer.on("swiperight", function (e) {
-      PubSub.publish("mainContentSwipeRight");
-    });
-
-    hammer.on("panright", function (e) {
-      PubSub.publish("mainContentPanRight", e);
-    });
-
-    hammer.on("panleft", function (e) {
-      PubSub.publish("mainContentPanLeft", e);
-    });
-
-    hammer.on("panend", function (e) {
-      PubSub.publish("mainContentPanEnd", e);
-    });
+    // hammer.get("swipe").set({
+    //   direction: Hammer.DIRECTION_ALL
+    // });
+    //
+    // hammer.on("swipeup", function (e) {
+    //   PubSub.publish("swipeUp");
+    // });
+    //
+    // hammer.on("swipedown", function (e) {
+    //   PubSub.publish("swipeDown");
+    // });
+    //
+    // hammer.on("swipeleft", function (e) {
+    //   PubSub.publish("mainContentSwipeLeft");
+    // });
+    //
+    // hammer.on("swiperight", function (e) {
+    //   PubSub.publish("mainContentSwipeRight");
+    // });
+    //
+    // hammer.on("panright", function (e) {
+    //   PubSub.publish("mainContentPanRight", e);
+    // });
+    //
+    // hammer.on("panleft", function (e) {
+    //   PubSub.publish("mainContentPanLeft", e);
+    // });
+    //
+    // hammer.on("panend", function (e) {
+    //   PubSub.publish("mainContentPanEnd", e);
+    // });
 
     PubSub.subscribe("openSidebar", (msg, data) => {
       this.shiftLeft();

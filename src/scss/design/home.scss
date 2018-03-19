@@ -1,21 +1,19 @@
+@import "vars";
+
 .home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  .greetings {
-    transition: ease all 300ms;
-    margin-left: 15px;
+.greetings {
+  margin-left: 30px;
 
-    @include media-breakpoint-up(sm) {
-      margin-left: 85px;
-      margin-top: 0;
-    }
-
-    @include media-breakpoint-up(lg) {
-      margin-left: 170px;
-      margin-top: 0;
-    }
+  @include media-breakpoint-up(lg) {
+    margin-left: 100px;
   }
 
-  h1 {
+  .title {
     font-family: UnknownFont, sans-serif;
     font-weight: 500;
     font-size: 73px;
@@ -65,7 +63,7 @@
     }
   }
 
-  h2 {
+  .sub-title {
     margin-top: 9px;
     font-weight: normal;
     font-size: 13px;
@@ -84,14 +82,6 @@
     @include media-breakpoint-down(sm) {
       font-size: 11px;
     }
-  }
-
-  .line {
-    //opacity: 0;
-  }
-
-  .letter {
-    //opacity: 0;
   }
 
   .letter, .word {

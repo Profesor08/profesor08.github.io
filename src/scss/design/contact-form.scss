@@ -1,9 +1,38 @@
 @import "vars";
 
+.contact {
+
+  .container-fluid {
+    height: 100%;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include media-breakpoint-down(sm) {
+      justify-content: start;
+      align-items: start;
+    }
+  }
+}
+
 .contact-form {
   width: 100%;
   max-width: 540px;
   margin: 0 15px;
+
+  @include media-breakpoint-down(md) {
+    margin: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    max-width: 100%;
+    max-height: calc(100% - 100px);
+    margin-top: 100px;
+    overflow: auto;
+    overflow-x: hidden;
+  }
 
   [placeholder]:focus::-webkit-input-placeholder {
     opacity: 0;
@@ -64,6 +93,27 @@
       ~ .control-underline {
         width: 100%;
       }
+    }
+  }
+
+  .btn-primary {
+    background: transparent;
+    border-color: $secondary-color;
+    box-shadow: 0 0 0 0 rgba($secondary-color, 0.5);
+
+    &:hover {
+      background: transparent;
+      border-color: darken($secondary-color, 5%);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($secondary-color, 0.5);
+    }
+
+    &:not([disabled]):not(.disabled):active {
+      background: transparent;
+      border-color: lighten($secondary-color, 10%);
+      box-shadow: 0 0 0 0.2rem rgba($secondary-color, 0.5);
     }
   }
 

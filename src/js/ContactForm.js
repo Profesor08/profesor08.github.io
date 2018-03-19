@@ -13,25 +13,44 @@ import "noty/src/themes/nest.scss"
     console.log(this);
     console.log(data.get("name"));
 
-    axios.post("https://e-webdev.ru/landing-mailer/", data).then(function (res) {
-      let data = res.data;
-
-      if (data.status !== undefined && data.message !== undefined)
+    function status(data)
+    {
+      switch (data.status)
       {
-        new Noty({
-          type: data.status,
-          text: data.message,
-          theme: "nest",
-          killer: true,
-          timeout: 3000,
-          closeWith: ['click']
-        }).show();
-      }
-      else
-      {
-
+        case "error":
+          return "error";
+        case "success":
+          return "success";
       }
 
+      return "warning";
+    }
+
+    function message(data)
+    {
+      let msg = data.message ? data.message.trim() : "";
+
+      if (!msg || msg.length === 0)
+      {
+        return "Something went wrong!";
+      }
+
+      return msg;
+    }
+
+    axios.post("https://e-webdev.ru/landing-mailer/", data).then(res => {
+      new Noty({
+        type: status(res.data),
+        text: message(res.data),
+        theme: "nest",
+        killer: true,
+        timeout: 3000,
+        closeWith: ['click']
+      }).show();
+
+      if (res.data.status === "success") {
+        this.reset();
+      }
     });
   });
 

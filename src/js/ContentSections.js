@@ -34,9 +34,6 @@ import {TimelineMax} from "gsap";
       opacity: 1
     });
 
-    console.log($current, $next);
-    console.log(currentPage, page);
-
     currentPage = page;
   }
 

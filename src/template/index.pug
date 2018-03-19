@@ -45,13 +45,13 @@ html
     include sidebar
 
     main.main
-      section.home.is-active.align-items-center(data-page="home")
+      section.home(data-page="home")
         include sections-content/section-home
 
-      section.works.align-items-center(data-page="works")
+      section.works(data-page="works")
         //include sections-content/section-home
 
-      section.contact.align-items-center(data-page="contact")
+      section.contact.is-active(data-page="contact")
         include sections-content/section-contacts
 
     .main-overlay

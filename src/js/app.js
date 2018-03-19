@@ -36,7 +36,7 @@ window.jQuery = jQuery;
 
 function isTouchDevice()
 {
-  return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
+  return true === ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
 }
 
 if (!isTouchDevice())
@@ -62,16 +62,16 @@ hamburger.on("open", function () {
 //   PubSub.publish("openSidebar");
 // });
 
-$(".main").on("mousewheel", function (event) {
-  if (event.deltaY < 0)
-  {
-    PubSub.publish("scrollDown");
-  }
-  else
-  {
-    PubSub.publish("scrollUp");
-  }
-});
+// $(".main").on("mousewheel", function (event) {
+//   if (event.deltaY < 0)
+//   {
+//     PubSub.publish("scrollDown");
+//   }
+//   else
+//   {
+//     PubSub.publish("scrollUp");
+//   }
+// });
 
 $(window).on("resize", function () {
   PubSub.publish("windowResize", {

@@ -7,7 +7,7 @@
   top: 50%;
   left: 50px;
   transform: translate(-50%, -50%);
-  transition: ease all 300ms;
+  //transition: ease all 300ms;
 
   @include media-breakpoint-down(md) {
     left: 50%;
