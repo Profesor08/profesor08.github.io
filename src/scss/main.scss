@@ -13,6 +13,8 @@ html, body {
   overflow: hidden;
 
   background: #2A2A2C;
+
+  font-family: "Open Sans", sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -102,6 +104,14 @@ section a, a.design-link {
   }
 }
 
+.letter, .word {
+  display: inline-block;
+  transition: color 0.15s ease-out;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
 
 @import "design/loading";
 @import "design/hamburger";

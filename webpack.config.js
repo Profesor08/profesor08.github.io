@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const merge = require("webpack-merge");
 
 const pug = require("./webpack/pug");
-const devserver = require("./webpack/devserver");
+const devServer = require("./webpack/devserver");
 const sass = require("./webpack/sass");
 const css = require("./webpack/css");
 const extractCSS = require("./webpack/css.extract");
@@ -84,7 +84,10 @@ module.exports = function (env) {
   {
     return merge([
       common,
-      devserver(),
+      {
+        devtool: "source-map"
+      },
+      devServer(),
       sass(),
       css(),
       audio()

@@ -1,16 +1,17 @@
 import SplitLetters from "./SplitLetters";
 import {TimelineMax} from "gsap";
 import CustomEase from "./CustomEase";
+import Rubber from "./RubberAnimation";
 
 (function () {
 
-  SplitLetters(".home h2", "<span class=\"word\">$</span>", " ", " ");
-  SplitLetters(".home h1", "<div class=\"line\">$</div>", /\n+/, "");
-  SplitLetters(".home h1", "<span class=\"letter\">$</span>", "", "");
+  SplitLetters(".greetings .sub-title", "<span class=\"word\">$</span>", " ", " ");
+  SplitLetters(".greetings .title", "<div class=\"line\">$</div>", /\n+/, "");
+  SplitLetters(".greetings .title", "<span class=\"letter\">$</span>", "", "");
 
-  let $letters = $(".home .letter");
-  let $words = $(".home .word");
-  let $lines = $(".home .line, .home h2");
+  let $letters = $(".greetings .letter");
+  let $words = $(".greetings .word");
+  let $lines = $(".greetings .line, .greetings .sub-title");
   let tl = new TimelineMax({
     onComplete: function () {
       randomRubber();
@@ -23,14 +24,7 @@ import CustomEase from "./CustomEase";
     {
       let letter = $letters[Math.floor(Math.random() * $letters.length)];
 
-      new TimelineMax().to(letter, .3, {
-        scaleX: 1.25,
-        scaleY: 0.75
-      }).to(letter, 1, {
-        scaleX: 1,
-        scaleY: 1,
-        ease: Elastic.easeOut.config(3, 0.3)
-      });
+      Rubber.Letter(letter);
     }
 
     setTimeout(function () {
@@ -58,7 +52,7 @@ import CustomEase from "./CustomEase";
         scaleX: 1,
         scaleY: 1,
         color: "white",
-        ease: Elastic.easeOut.config(3, 0.3),
+        ease: Rubber.Easing,
         onComplete: function () {
           this.target.setAttribute("style", "");
         }
@@ -67,36 +61,11 @@ import CustomEase from "./CustomEase";
   }, 0.4);
 
   $letters.on("mouseenter", function () {
-    let $letter = $(this);
-    let tl = new TimelineMax();
-
-    tl.to($letter, .3, {
-      scaleX: 1.25,
-      scaleY: 0.75
-    });
-
-    tl.to($letter, 1, {
-      scaleX: 1,
-      scaleY: 1,
-      ease: Elastic.easeOut.config(3, 0.3)
-    });
+    Rubber.Letter($(this));
   });
 
   $words.on("mouseenter", function () {
-    let $word = $(this);
-    let tl = new TimelineMax();
-
-    tl.to($word, .3, {
-      scaleX: 1.1,
-      scaleY: 0.75
-    });
-
-    tl.to($word, 1, {
-      scaleX: 1,
-      scaleY: 1,
-      ease: Elastic.easeOut.config(3, 0.3)
-    });
+    Rubber.Word($(this));
   });
-
 
 })();

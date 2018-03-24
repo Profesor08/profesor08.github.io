@@ -45,13 +45,13 @@ html
     include sidebar
 
     main.main
-      section.home(data-page="home")
+      section.home.is-active(data-page="home")
         include sections-content/section-home
 
       section.works(data-page="works")
         //include sections-content/section-home
 
-      section.contact.is-active(data-page="contact")
+      section.contact(data-page="contact")
         include sections-content/section-contacts
 
     .main-overlay

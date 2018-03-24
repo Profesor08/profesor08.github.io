@@ -1,9 +1,7 @@
-import "jquery-mousewheel";
 import "pixi.js";
 import {TimelineMax, Power3} from "gsap";
 import Perlin from "./Perlin";
 import PubSub from "pubsub-js";
-import isMobile from "is-mobile";
 
 (function () {
 
@@ -30,11 +28,7 @@ import isMobile from "is-mobile";
     {
       name: "contact",
       texture: require("../images/bg/3.jpg")
-    },
-    // {
-    //   name: "unused",
-    //   texture: require("../images/bg/3.jpg")
-    // }
+    }
   ];
 
   // PIXI application
@@ -389,7 +383,10 @@ import isMobile from "is-mobile";
 
     // resize PIXI on window resize
     PubSub.subscribe("windowResize", function (msg, data) {
-      resizeScene(data);
+      resizeScene({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
     });
 
     resizeScene({
@@ -404,163 +401,6 @@ import isMobile from "is-mobile";
           height: window.innerHeight
         });
       }
-    });
-
-    class VisualizationLine
-    {
-      constructor(width, height)
-      {
-        this.graphics = new PIXI.Graphics();
-        this.time = Math.floor(Math.random() * 65535);
-        this.width = width;
-        this.height = height;
-        this.points = [];
-
-        for (let i = width - 1; i >= 0; i--)
-        {
-          this.points[i] = this.GetNextPoint();
-        }
-      }
-
-      Y(perlin, frequencyData)
-      {
-        let heightMultiplier = this.GetAmplitude(frequencyData) * 128;
-        let vh = this.height * heightMultiplier;
-
-        return perlin * vh + height / 2 - vh / 2;
-      }
-
-      Update(width, height, frequencyData)
-      {
-        this.width = width;
-        this.height = height;
-        this.graphics.clear();
-        this.graphics.lineStyle(2, 0xffffff);
-        this.graphics.moveTo(0, this.Y(this.points[0], frequencyData));
-
-        this.points.pop();
-        this.points.unshift(this.GetNextPoint());
-
-        for (let i = 0; i < this.width; i++)
-        {
-          this.graphics.lineTo(i, this.Y(this.points[i], frequencyData));
-        }
-      }
-
-      GetAmplitude(frequencyData)
-      {
-        return frequencyData.reduce((a, b) => a + b) / frequencyData.length / 256;
-      }
-
-      GetNextPoint()
-      {
-        this.time++;
-        return Perlin(this.time / 100, 0, 0);
-      }
-
-      Graphics()
-      {
-        return this.graphics;
-      }
-    }
-
-
-    // let lines = [];
-    //
-    // for (let i = 0; i < 1; i++)
-    // {
-    //   lines.push(new VisualizationLine(width, 100));
-    //   mainContainer.addChild(lines[i].Graphics());
-    // }
-
-
-    let colors = [];
-    colors.push(0xe65100);
-    colors.push(0xff8f00);
-    colors.push(0xfbc02d);
-    colors.push(0xeeff41);
-    colors.push(0xc6ff00);
-    colors.push(0x76ff03);
-    colors.push(0x1de9b6);
-    colors.push(0x00b0ff);
-    colors.push(0x3d5afe);
-
-
-    //let circles  = new PIXI.Graphics();
-    //let circlesY = new Array(128).fill(0).map(() => Math.floor(Math.random() * height));
-
-    //mainContainer.addChild(circles);
-
-
-    let circlesContainer = new PIXI.Container();
-    let circles = [];
-    let radiusMultiplier = 1;
-    let isMobileDevice = isMobile();
-    let moveSpeed = .5;
-
-    if (isMobileDevice === true) {
-      radiusMultiplier = 0.5;
-    }
-
-    for (let i = 0; i < 128; i++)
-    {
-      let circle = new PIXI.Graphics();
-      let x = i * Math.floor(width / 128) + 50;
-      let y = Math.floor(Math.random() * height);
-      circle.position.set(x, y);
-      circle.direction = Math.random() > .5 ? 1 : -1;
-      circle.speed = Math.round((128 - i) / 64 + 1) + Math.random() * 2;
-      circle.radiusMultiplier = radiusMultiplier;
-      circles.push(circle);
-      circlesContainer.addChild(circle);
-    }
-
-    mainContainer.addChild(circlesContainer);
-
-    function drawAudioVisualization(frequencyData)
-    {
-      for (let i = 0; i < frequencyData.length; i++)
-      {
-        circles[i].clear();
-        circles[i].beginFill(colors[Math.round(i / 16)]);
-        circles[i].lineStyle(0);
-
-        // let radius = Math.max(10, frequencyData[i] / 3);
-        let radius = frequencyData[i] / 3 * circles[i].radiusMultiplier;
-
-        circles[i].position.x = width - i * Math.floor(width / 128) - 50;
-        circles[i].position.y += circles[i].speed * circles[i].direction * moveSpeed;
-
-        if (circles[i].direction > 0) {
-          if (circles[i].position.y >= height) {
-            circles[i].direction = -1;
-          }
-        }
-        else {
-          if (circles[i].position.y <= 0) {
-            circles[i].direction = 1;
-          }
-        }
-
-        circles[i].drawCircle(0, 0, radius);
-        circles[i].endFill();
-      }
-
-    }
-
-    PubSub.subscribe("backgroundAudioReady", function (msg, data) {
-
-      PubSub.publish("audioReadyMessageReceived");
-
-      let bufferLength = data.analyser.frequencyBinCount;
-      let frequencyData = new Uint8Array(bufferLength);
-
-      ticker.add(function () {
-        data.analyser.getByteFrequencyData(frequencyData);
-        drawAudioVisualization(frequencyData);
-
-        PubSub.publish("frequencyDataUpdated", frequencyData);
-      });
     });
 
   });

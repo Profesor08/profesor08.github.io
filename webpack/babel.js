@@ -9,13 +9,21 @@ module.exports = function () {
         {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
-          use: {
-            loader: "babel-loader",
-            options: {
-              presets: ["babel-preset-env"],
-              // plugins: ["regenerator-runtime/runtime"]
-            }
-          }
+          use: [
+            {
+              loader: "babel-loader",
+              options: {
+                presets: ["babel-preset-env"],
+                // plugins: ["regenerator-runtime/runtime"]
+              }
+            },
+            // {
+            //   loader: ["source-map-loader"],
+            //   options: {
+            //     enforce: "pre"
+            //   }
+            // }
+          ]
         }
       ]
     }

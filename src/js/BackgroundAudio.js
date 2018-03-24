@@ -8,14 +8,15 @@ import {TimelineMax} from "gsap";
   let mediaSrc = null;
   let analyser = null;
   let sendReadyMessage = true;
-  let maxVolume = .0;
+  let maxVolume = .1;
 
-  audio.src = require("../audio/Lord of the Isles - Teach Them No Hate.mp3");
-  // audio.src = require("../audio/Portugal. The Man - Feel It Still.mp3");
+  // audio.src = require("../audio/Lord of the Isles - Teach Them No Hate.mp3");
+  audio.src = require("../audio/Portugal. The Man - Feel It Still.mp3");
 
   audio.volume = maxVolume;
   audio.loop = true;
   audio.currentTime = 428;
+  audio.currentTime = 0;
 
   if (isMobile() === true)
   {
@@ -42,9 +43,7 @@ import {TimelineMax} from "gsap";
       analyser.connect(context.destination);
       analyser.fftSize = 256;
     }
-  });
 
-  audio.addEventListener("timeupdate", function () {
     if (sendReadyMessage === true)
     {
       PubSub.publish("backgroundAudioReady", {
@@ -52,6 +51,15 @@ import {TimelineMax} from "gsap";
         analyser: analyser
       });
     }
+  });
+
+  audio.addEventListener("timeupdate", function () {
+    let frequencyData = new Uint8Array(256);
+    analyser.getByteFrequencyData(frequencyData);
+
+    PubSub.publish("backgroundAudioTimeUpdate", {
+      frequencyData: frequencyData
+    });
   });
 
   PubSub.subscribe("audioReadyMessageReceived", function () {

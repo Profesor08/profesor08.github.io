@@ -83,13 +83,4 @@
       font-size: 11px;
     }
   }
-
-  .letter, .word {
-    display: inline-block;
-    transition: color 0.15s ease-out;
-
-    &:hover {
-      color: $secondary-color;
-    }
-  }
 }

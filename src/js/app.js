@@ -16,6 +16,7 @@ import "./Background";
 import "./MainOverlay";
 import "./GreetingsAnimations";
 import "./BackgroundAudio";
+import "./AudioVisualization";
 import "./AudioButton";
 import "./SidebarNav";
 import "./ContentSections";
@@ -74,15 +75,9 @@ hamburger.on("open", function () {
 // });
 
 $(window).on("resize", function () {
-  PubSub.publish("windowResize", {
-    width: window.innerWidth,
-    height: window.innerHeight
-  });
+  PubSub.publish("windowResize");
 });
 
 $(window).on("orientationchange", function () {
-  PubSub.publish("windowResize", {
-    width: window.innerHeight,
-    height: window.innerWidth
-  });
+  PubSub.publish("windowResize");
 });
