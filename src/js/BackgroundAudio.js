@@ -8,7 +8,7 @@ import {TimelineMax} from "gsap";
   let mediaSrc = null;
   let analyser = null;
   let sendReadyMessage = true;
-  let maxVolume = .1;
+  let maxVolume = .0;
 
   // audio.src = require("../audio/Lord of the Isles - Teach Them No Hate.mp3");
   audio.src = require("../audio/Portugal. The Man - Feel It Still.mp3");

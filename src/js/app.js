@@ -21,6 +21,7 @@ import "./AudioButton";
 import "./SidebarNav";
 import "./ContentSections";
 import "./ContactForm";
+import "./Works";
 
 // new Particles("particles");
 // $(".material-input").materialInput();

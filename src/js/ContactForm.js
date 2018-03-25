@@ -4,6 +4,8 @@ import "noty/src/noty.scss";
 import "noty/src/themes/nest.scss"
 import SplitLetters from "./SplitLetters";
 import Rubber from "./RubberAnimation";
+import scriptjs from "scriptjs";
+import PubSub from "pubsub-js";
 
 (function () {
 
@@ -67,11 +69,55 @@ import Rubber from "./RubberAnimation";
         closeWith: ['click']
       }).show();
 
-      if (res.data.status === "success") {
+      if (res.data.status === "success")
+      {
         this.reset();
       }
     });
   });
 
+  scriptjs("https://smartlock.google.com/client");
+
+  const clientId = "101335812268-od03gksauc6najel6n7j9rejnqliaput.apps.googleusercontent.com";
+
+  window.onGoogleYoloLoad = googleyolo => {
+    let $name = $form.find(`[name="name"]`);
+    let $email = $form.find(`[name="email"]`);
+    let authFinished = false;
+
+    function getUserAuthData()
+    {
+      const hintPromise = googleyolo.hint({
+        supportedAuthMethods: [
+          "https://accounts.google.com"
+        ],
+        supportedIdTokenProviders: [
+          {
+            uri: "https://accounts.google.com",
+            clientId: clientId
+          }
+        ]
+      });
+
+      hintPromise.then(credential => {
+        $name.val(credential.displayName);
+        $email.val(credential.id);
+      }, error => {});
+    }
+
+    $name.on("focus click", function () {
+      if ($name.val().length === 0 && $email.val().length === 0)
+      {
+        getUserAuthData();
+      }
+    });
+
+    $email.on("focus click", function () {
+      if ($name.val().length === 0 && $email.val().length === 0)
+      {
+        getUserAuthData();
+      }
+    });
+  };
 
 })();
