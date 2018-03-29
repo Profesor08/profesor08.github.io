@@ -69,9 +69,7 @@ import {TimelineMax} from "gsap";
   let circles = [];
   let radiusMultiplier = 1;
   let isMobileDevice = isMobile();
-  let moveSpeed = .5;
   let bufferLength = 64;
-  let frequencyData = [];
   let audio = null;
   let analyser = null;
 
@@ -97,7 +95,6 @@ import {TimelineMax} from "gsap";
     circle.setPosition(
       (width - 50) - i * ((width - 50) / bufferLength),
       Math.floor(Math.random() * height)
-      // height
     );
 
     circle.setDirection(Math.random() < .5 ? -1 : 1);
@@ -118,7 +115,6 @@ import {TimelineMax} from "gsap";
       circles.forEach((circle, index) => {
         circle.move(height);
         circle.setPositionX((width - 50) - index * ((width - 50) / bufferLength));
-        // circle.setRadius((bufferLength - index) * map(frequencyData[index], 0, 256, 0, 1) * 2 * radiusMultiplier);
         circle.setRadius(frequencyData[index] / 3 * radiusMultiplier);
         circle.draw();
       });

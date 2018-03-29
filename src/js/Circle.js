@@ -4,9 +4,7 @@ export default class Circle
   constructor(container, color)
   {
     this.inner = new PIXI.Graphics();
-    this.outer = new PIXI.Graphics();
     container.addChild(this.inner);
-    container.addChild(this.outer);
     this.color = color;
     this.direction = 0;
     this.speed = 0;
@@ -43,7 +41,7 @@ export default class Circle
     this.y = y;
   }
 
-  getPosition(x, y)
+  getPosition()
   {
     return {
       x: this.x,
@@ -51,12 +49,12 @@ export default class Circle
     }
   }
 
-  getPositionX(x)
+  getPositionX()
   {
     return this.x;
   }
 
-  getPositionY(y)
+  getPositionY()
   {
     return this.y;
   }
@@ -100,9 +98,12 @@ export default class Circle
   {
     this.y = this.y + this.speed * this.direction * .5;
 
-    if (this.y < 0 || this.y > height)
+    if (this.y < -this.radius * 2)
     {
-      this.changeDirection();
+      this.y = height + this.radius * 2;
+    }
+    else if (this.y > height + this.radius * 2) {
+      this.y = -this.radius * 2;
     }
   }
 
@@ -115,12 +116,5 @@ export default class Circle
     this.inner.position.y = this.y;
     this.inner.drawCircle(0, 0, this.innerRadius);
     this.inner.endFill();
-
-    // this.outer.clear();
-    // this.outer.lineStyle(1, this.color);
-    // this.outer.position.x = this.x;
-    // this.outer.position.y = this.y;
-    // this.outer.drawCircle(0, 0, this.innerRadius);
-    // this.outer.endFill();
   }
 }

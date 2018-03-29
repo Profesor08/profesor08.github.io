@@ -11,6 +11,7 @@ import PubSub from "pubsub-js";
 import Hamburger from "./Hamburger";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
+import "./MathExtend";
 import "./Pagination";
 import "./Background";
 import "./MainOverlay";
@@ -22,6 +23,7 @@ import "./SidebarNav";
 import "./ContentSections";
 import "./ContactForm";
 import "./Works";
+import "./Home3DMove";
 
 // new Particles("particles");
 // $(".material-input").materialInput();
