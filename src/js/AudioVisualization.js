@@ -1,58 +1,23 @@
 import "pixi.js";
 import PubSub from "pubsub-js";
 import isMobile from "is-mobile";
-import Circle from "./Circle";
 import {TimelineMax} from "gsap";
 import gradientColor from "gradient-color";
-import Color from "color";
+
 
 (function () {
-
-  // Browser pixel floor fix. 0 - disabled
-  let additionalWidth = 0;
-  let additionalHeight = 0;
-
   // windows width / height
-  let width = $(window).width() + additionalWidth;
-  let height = $(window).height() + additionalHeight;
+  let width = $(window).width();
+  let height = $(window).height();
+  let isMobileDevice = isMobile();
+  let mobileSizeMultiplier = 1;
 
-  // PIXI application
-  const app = new PIXI.Application(width, height, {
-    antialias: true,
-    transparent: true
-  });
-
-  // PIXI Ticker
-  const ticker = PIXI.ticker.shared;
-
-
-  // PIXI containers
-  let mainContainer = new PIXI.Container();
-
-
-  // Resize PIXI scene
-  function resizeScene(data)
+  if (isMobileDevice === true)
   {
-    width = data.width + additionalWidth;
-    height = data.height + additionalHeight;
-    app.renderer.resize(width, height);
-    app.renderer.render(mainContainer);
-  }
-
-  function map(n, start1, stop1, start2, stop2, withinBounds) {
-    let newval = (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
-    if (!withinBounds) {
-      return newval;
-    }
-    if (start2 < stop2) {
-      return constrain(newval, start2, stop2);
-    } else {
-      return constrain(newval, stop2, start2);
-    }
-  }
-
-  function constrain(n, low, high) {
-    return Math.max(Math.min(n, high), low);
+    mobileSizeMultiplier = 2;
+    width *= mobileSizeMultiplier;
+    height *= mobileSizeMultiplier;
+    // radiusMultiplier = 0.5;
   }
 
   // Circles colors
@@ -68,87 +33,62 @@ import Color from "color";
     "#3d5afe",
   ];
 
-  let circlesContainer = new PIXI.Container();
   let circles = [];
   let radiusMultiplier = 1;
-  let isMobileDevice = isMobile();
   let bufferLength = 128;
   let audio = null;
   let analyser = null;
-  let colorGradient = gradientColor(colors, bufferLength).map(color => new Color(color).rgbNumber());
+  let colorGradient = gradientColor(colors, bufferLength);//.map(color => new Color(color).rgbNumber());
 
-  app.stage.addChild(mainContainer);
+  let canvas = document.createElement("canvas");
+  canvas.classList.add("background");
+  canvas.width = width;
+  canvas.height = height;
 
-  app.view.classList.add("background");
+  let ctx = canvas.getContext("2d");
 
-  $(".main").append(app.view);
-
-  mainContainer.addChild(circlesContainer);
-
-  if (isMobileDevice === true)
-  {
-    radiusMultiplier = 0.5;
-  }
+  $(".main").append(canvas);
 
   for (let i = 0; i < bufferLength; i++)
   {
-    let circle = new Circle(circlesContainer);
-
-    circle.setColor(colorGradient[i]);
-
-    circle.setPosition(
-      (width - 50) - i * ((width - 50) / bufferLength),
-      Math.floor(Math.random() * height)
-    );
-
-    circle.setDirection(Math.random() < .5 ? -1 : 1);
-
-    circle.setSpeed((bufferLength - i) / 32 + Math.random() * 2);
-
-    circle.setRadius((bufferLength - i) / 16);
+    let circle = {
+      color: colorGradient[i],
+      x: (width - 50) - i * ((width - 50) / bufferLength),
+      y: Math.floor(Math.random() * height),
+      direction: Math.random() < .5 ? -1 : 1,
+      speed: (bufferLength - i) / 32 + Math.random() * 2,
+      radius: (bufferLength - i) / 16,
+      outerRadius: 0
+    };
 
     circles.push(circle);
+
+    if (isMobileDevice === true)
+    {
+      i += 3;
+    }
   }
 
-  ticker.add(function () {
-    if (analyser !== null)
-    {
-      let frequencyData = new Uint8Array(bufferLength);
-      analyser.getByteFrequencyData(frequencyData);
-
-      circles.forEach((circle, index) => {
-        circle.move(height);
-        circle.setPositionX((width - 50) - index * ((width - 50) / bufferLength));
-        circle.setRadius(frequencyData[index] / 3 * radiusMultiplier);
-        circle.draw();
-      });
+  function resizeScene(data)
+  {
+    if (isMobileDevice === true) {
+      width = data.width * mobileSizeMultiplier;
+      height = data.height * mobileSizeMultiplier;
     }
-  });
+    else {
+      width = data.width;
+      height = data.height;
+    }
 
-  PubSub.subscribe("backgroundAudioTimeUpdate", function (msg, data) {
+    canvas.width = width;
+    canvas.height = height;
+  }
 
-  });
+  function animate()
+  {
+    requestAnimationFrame(animate);
 
-  PubSub.subscribe("backgroundAudioReady", function (msg, data) {
-    PubSub.publish("audioReadyMessageReceived");
-    audio = data.audio;
-    analyser = data.analyser;
-  });
-
-  // resize PIXI on window resize
-  PubSub.subscribe("windowResize", function () {
-    resizeScene({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
-  });
-
-  resizeScene({
-    width: window.innerWidth,
-    height: window.innerHeight
-  });
-
-  ticker.add(function () {
+    // Resize canvas if window size  changes
     if (window.innerWidth !== width || window.innerHeight !== height)
     {
       resizeScene({
@@ -156,6 +96,91 @@ import Color from "color";
         height: window.innerHeight
       });
     }
+
+    // Draw circles
+    if (analyser !== null)
+    {
+
+
+      let frequencyData = new Uint8Array(bufferLength);
+      analyser.getByteFrequencyData(frequencyData);
+
+      ctx.clearRect(0, 0, width, height);
+
+      circles.forEach((circle, index) => {
+        let offset = index;
+
+        if (isMobileDevice === true)
+        {
+          offset *= 3;
+        }
+
+        circle.y = circle.y + circle.speed * circle.direction * .5 * mobileSizeMultiplier;
+
+        if (circle.y < -circle.radius * 2)
+        {
+          circle.y = height + circle.radius * 2;
+        }
+        else if (circle.y > height + circle.radius * 2) {
+          circle.y = -circle.radius * 2;
+        }
+
+        circle.x = (width - 50) - offset * ((width - 50) / bufferLength);
+        circle.radius = frequencyData[offset] / 3 * radiusMultiplier;
+
+        if (circle.outerRadius < circle.radius)
+        {
+          circle.outerRadius = circle.radius;
+        }
+
+        if (circle.radius > 0)
+        {
+          ctx.beginPath();
+          ctx.lineWidth = 0;
+          ctx.fillStyle = circle.color;
+          ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+          ctx.fill();
+          ctx.stroke();
+        }
+
+        circle.outerRadius -= .5 * mobileSizeMultiplier;
+
+        if (circle.outerRadius < 0) {
+          circle.outerRadius = 0;
+        }
+
+        if (circle.outerRadius > 0) {
+
+          ctx.beginPath();
+          ctx.lineWidth = mobileSizeMultiplier;
+          ctx.strokeStyle = circle.color;
+          ctx.arc(circle.x, circle.y, circle.outerRadius, 0, 2 * Math.PI);
+          ctx.stroke();
+        }
+
+
+      });
+    }
+  }
+
+  resizeScene({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+  animate();
+
+  PubSub.subscribe("backgroundAudioReady", function (msg, data) {
+    audio = data.audio;
+    analyser = data.analyser;
+  });
+
+  // resize on window resize
+  PubSub.subscribe("windowResize", function () {
+    resizeScene({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
   });
 
 })();
