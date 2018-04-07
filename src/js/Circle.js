@@ -4,7 +4,9 @@ export default class Circle
   constructor(container, color)
   {
     this.inner = new PIXI.Graphics();
+    this.outer = new PIXI.Graphics();
     container.addChild(this.inner);
+    container.addChild(this.outer);
     this.color = color;
     this.direction = 0;
     this.speed = 0;
@@ -88,9 +90,10 @@ export default class Circle
 
   updateRadius()
   {
-    if (this.outerRadius > this.innerRadius)
-    {
-      this.outerRadius -= .01;
+    this.outerRadius -= .5;
+
+    if (this.outerRadius < 0) {
+      this.outerRadius = 0;
     }
   }
 
@@ -109,6 +112,10 @@ export default class Circle
 
   draw()
   {
+
+    this.updateRadius();
+
+    this.inner.alpha = 0.7;
     this.inner.clear();
     this.inner.beginFill(this.color);
     this.inner.lineStyle(0);
@@ -116,5 +123,13 @@ export default class Circle
     this.inner.position.y = this.y;
     this.inner.drawCircle(0, 0, this.innerRadius);
     this.inner.endFill();
+
+    this.outer.alpha = 0.3;
+    this.outer.clear();
+    this.outer.lineStyle(1, this.color);
+    this.outer.position.x = this.x;
+    this.outer.position.y = this.y;
+    this.outer.drawCircle(0, 0, this.outerRadius);
+    this.outer.endFill();
   }
 }
