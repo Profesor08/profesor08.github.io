@@ -51,8 +51,10 @@ const common = merge([
       // }),
 
       new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery'
+        'window.jQuery'    : 'jquery',
+        'window.$'         : 'jquery',
+        'jQuery'           : 'jquery',
+        '$'                : 'jquery'
       })
     ]
   },

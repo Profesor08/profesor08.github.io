@@ -3,6 +3,8 @@ import PubSub from "pubsub-js";
 import isMobile from "is-mobile";
 import Circle from "./Circle";
 import {TimelineMax} from "gsap";
+import gradientColor from "gradient-color";
+import Color from "color";
 
 (function () {
 
@@ -27,18 +29,6 @@ import {TimelineMax} from "gsap";
   // PIXI containers
   let mainContainer = new PIXI.Container();
 
-  // Circles colors
-  let colors = [
-    0xe65100,
-    0xff8f00,
-    0xfbc02d,
-    0xeeff41,
-    0xc6ff00,
-    0x76ff03,
-    0x1de9b6,
-    0x00b0ff,
-    0x3d5afe
-  ];
 
   // Resize PIXI scene
   function resizeScene(data)
@@ -65,13 +55,27 @@ import {TimelineMax} from "gsap";
     return Math.max(Math.min(n, high), low);
   }
 
+  // Circles colors
+  let colors = [
+    "#e65100",
+    "#ff8f00",
+    "#fbc02d",
+    "#eeff41",
+    "#c6ff00",
+    "#76ff03",
+    "#1de9b6",
+    "#00b0ff",
+    "#3d5afe",
+  ];
+
   let circlesContainer = new PIXI.Container();
   let circles = [];
   let radiusMultiplier = 1;
   let isMobileDevice = isMobile();
-  let bufferLength = 64;
+  let bufferLength = 128;
   let audio = null;
   let analyser = null;
+  let colorGradient = gradientColor(colors, bufferLength).map(color => new Color(color).rgbNumber());
 
   app.stage.addChild(mainContainer);
 
@@ -90,7 +94,7 @@ import {TimelineMax} from "gsap";
   {
     let circle = new Circle(circlesContainer);
 
-    circle.setColor(colors[Math.floor(i / 8)]);
+    circle.setColor(colorGradient[i]);
 
     circle.setPosition(
       (width - 50) - i * ((width - 50) / bufferLength),
@@ -99,7 +103,7 @@ import {TimelineMax} from "gsap";
 
     circle.setDirection(Math.random() < .5 ? -1 : 1);
 
-    circle.setSpeed((bufferLength - i) / 8 + Math.random() * 2);
+    circle.setSpeed((bufferLength - i) / 32 + Math.random() * 2);
 
     circle.setRadius((bufferLength - i) / 16);
 

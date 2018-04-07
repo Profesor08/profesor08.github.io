@@ -83,7 +83,6 @@ import PubSub from "pubsub-js";
   window.onGoogleYoloLoad = googleyolo => {
     let $name = $form.find(`[name="name"]`);
     let $email = $form.find(`[name="email"]`);
-    let authFinished = false;
 
     function getUserAuthData()
     {
@@ -105,18 +104,13 @@ import PubSub from "pubsub-js";
       }, error => {});
     }
 
-    $name.on("focus click", function () {
+    $form.find(`[name="name"], [name="email"]`).on("focus click", function () {
       if ($name.val().length === 0 && $email.val().length === 0)
       {
         getUserAuthData();
       }
-    });
+    }).on("blur", function () {
 
-    $email.on("focus click", function () {
-      if ($name.val().length === 0 && $email.val().length === 0)
-      {
-        getUserAuthData();
-      }
     });
   };
 

@@ -1,3 +1,4 @@
+import "./sayHello";
 import "normalize.css";
 import "../scss/main.scss";
 
@@ -24,6 +25,10 @@ import "./ContentSections";
 import "./ContactForm";
 import "./Works";
 import "./Home3DMove";
+import scriptjs from "scriptjs";
+
+window.$ = $;
+window.jQuery = $;
 
 // new Particles("particles");
 // $(".material-input").materialInput();
@@ -35,8 +40,6 @@ import "./Home3DMove";
 // http://0.0.0.0:8997
 // http://127.0.0.1:41017
 
-window.$ = jQuery;
-window.jQuery = jQuery;
 
 function isTouchDevice()
 {
@@ -55,6 +58,10 @@ const sidebar = new Sidebar(".sidebar");
 const mainContent = new MainContent(".main");
 
 // PubSub.publish("openSidebar");
+
+// PubSub.publish("gotoPage", {
+//   to: "works"
+// });
 
 hamburger.on("open", function () {
   PubSub.publish("openSidebar");
@@ -84,3 +91,4 @@ $(window).on("resize", function () {
 $(window).on("orientationchange", function () {
   PubSub.publish("windowResize");
 });
+

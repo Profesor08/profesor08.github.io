@@ -5,6 +5,8 @@ import PubSub from "pubsub-js";
 
 (function () {
 
+  const animationTime = 3;
+
   // Browser pixel floor fix. 0 - disabled
   let additionalWidth = 0;
   let additionalHeight = 0;
@@ -32,7 +34,10 @@ import PubSub from "pubsub-js";
   ];
 
   // PIXI application
-  const app = new PIXI.Application(width, height, {antialias: true});
+  const app = new PIXI.Application(width, height, {
+    antialias: true,
+    autoStart: false
+  });
 
   // PIXI loader for loading textures
   const loader = PIXI.loader;
@@ -263,7 +268,7 @@ import PubSub from "pubsub-js";
         b: 0
       };
 
-      tl.to(obj, 1.5, {
+      tl.to(obj, animationTime, {
         a: direction < 0 ? 0 : 1,
         b: 1,
         ease: direction < 0 ? Power3.easeInOut : Power3.easeInOut,
@@ -317,13 +322,15 @@ import PubSub from "pubsub-js";
             nextImageBlurFilter.blur = 20 * (1 - obj.a);
             activeImageBlurFilter.blur = 20 * obj.a;
           }
+
+          app.renderer.render(mainContainer);
         }
       });
 
       let obj2 = {val: 0};
       let scaleDirection = Math.random() < 0.5 ? -1 : 1;
 
-      new TimelineMax().to(obj2, 1.5, {
+      new TimelineMax().to(obj2, animationTime, {
         val: 1,
         ease: Power0.easeNone,
         onUpdate: function () {
@@ -344,6 +351,7 @@ import PubSub from "pubsub-js";
           }
 
           scaleImage(nextImage, x, y, 0);
+          app.renderer.render(mainContainer);
         }
       });
 

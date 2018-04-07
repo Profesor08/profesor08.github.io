@@ -1,10 +1,11 @@
 import PubSub from 'pubsub-js';
+import Hammer from "hammerjs";
 
 (function () {
 
   let $home = $(".home-3d-scene");
   let $greetings = $(".greetings");
-  let $window = $(window);
+  let $main = $(".main");
   let isActive = true;
 
   PubSub.subscribe("gotoPage", function (msg, data) {
@@ -17,10 +18,19 @@ import PubSub from 'pubsub-js';
     transformStyle: "preserve-3d",
   });
 
-  $window.on("mousemove", function (event) {
+  let hammer = new Hammer($main.get(0));
+  hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL, threshold: 0 });
+
+  hammer.on('panmove', function(event) {
+    moveScene(event.center.x, event.center.y);
+  });
+
+  $main.on("mousemove", function (event) {
+    moveScene(event.pageX, event.pageY);
+  });
+
+  function moveScene(mx, my) {
     if (isActive) {
-      let mx = event.pageX;
-      let my = event.pageY;
       let halfW = window.innerWidth / 2;
       let halfH = window.innerHeight / 2;
 
@@ -42,6 +52,6 @@ import PubSub from 'pubsub-js';
         transform: `perspective(900px) translate(${left}px, ${top}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
       });
     }
-  });
+  }
 
 })();

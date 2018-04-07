@@ -15,7 +15,20 @@ import PubSub from "pubsub-js";
 
   let $speaker = $button.find(".audio-speaker");
 
-  PubSub.subscribe("frequencyDataUpdated", function (msg, frequencyData) {
+  let analyser = null;
+
+  function animate()
+  {
+    requestAnimationFrame(animate);
+
+    if (analyser === null)
+    {
+      return;
+    }
+
+    let frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+    analyser.getByteFrequencyData(frequencyData);
 
     let amplitude = getAmplitude(frequencyData);
     let multiplier = amplitude * 20;
@@ -29,7 +42,12 @@ import PubSub from "pubsub-js";
     $line3.attr("transform", `translate(${lineX * 2}, 0)`);
 
     $speaker.attr("transform", `scale(${scale})`);
+  }
 
+  animate();
+
+  PubSub.subscribe("backgroundAudioReady", function (msg, data) {
+    analyser = data.analyser;
   });
 
   PubSub.subscribe("openSidebar", (msg, data) => {

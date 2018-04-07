@@ -1,87 +1,107 @@
 import PubSub from "pubsub-js";
 import isMobile from "is-mobile";
 import {TimelineMax} from "gsap";
+import Pizzicato from "pizzicato";
 
 (function () {
-  let audio = document.createElement("audio");
-  let context = new AudioContext();
-  let mediaSrc = null;
-  let analyser = null;
-  let sendReadyMessage = true;
-  let maxVolume = 0.1;
 
-  audio.src = require("../audio/Lord of the Isles - Teach Them No Hate.mp3");
-  // audio.src = require("../audio/Portugal. The Man - Feel It Still.mp3");
+  const audioSourceUrl = require("../audio/xmas.evs-loop.mp3");
+  // const audioSourceUrl = require("../audio/Portugal. The Man - Feel It Still.mp3");
+  // const audioSourceUrl = require("../audio/Lord of the Isles - Teach Them No Hate.mp3");
+  const maxVolume = 1;
+  const animationTime = 3;
 
-  audio.volume = maxVolume;
-  audio.loop = true;
-  audio.currentTime = 428;
-  audio.currentTime = 0;
-
-  if (isMobile() === true)
-  {
-    let activated = false;
-    $(document.body).on("click", function () {
-      if (activated === false)
-      {
-        audio.play();
-        activated = true;
-      }
-    });
-  }
-  else
-  {
-    audio.play();
-  }
-
-  audio.addEventListener("canplaythrough", function () {
-    if (mediaSrc === null)
-    {
-      mediaSrc = context.createMediaElementSource(audio);
-      analyser = context.createAnalyser();
-      mediaSrc.connect(analyser);
-      analyser.connect(context.destination);
-      analyser.fftSize = 256;
+  const sound = new Pizzicato.Sound({
+    source: "file",
+    options: {
+      loop: true,
+      volume: maxVolume,
+      path: audioSourceUrl
     }
+  }, function () {
 
-    if (sendReadyMessage === true)
-    {
-      PubSub.publish("backgroundAudioReady", {
-        audio: audio,
-        analyser: analyser
-      });
-    }
-  });
-
-  audio.addEventListener("timeupdate", function () {
-    let frequencyData = new Uint8Array(256);
-    analyser.getByteFrequencyData(frequencyData);
-
-    PubSub.publish("backgroundAudioTimeUpdate", {
-      frequencyData: frequencyData
+    const lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+      frequency: 4000,
+      peak: 0
     });
-  });
 
-  PubSub.subscribe("audioReadyMessageReceived", function () {
-    sendReadyMessage = false;
+    const stereoPanner = new Pizzicato.Effects.StereoPanner({
+      pan: 0
+    });
+
+    const analyser = Pizzicato.context.createAnalyser();
+
+    let half = animationTime / 2;
+    let quad = animationTime / 4;
+
+    sound.addEffect(stereoPanner);
+    sound.addEffect(lowPassFilter);
+    sound.play();
+    sound.connect(analyser);
+
+    PubSub.publish("backgroundAudioReady", {
+      audio: sound,
+      analyser: analyser
+    });
+
+    PubSub.subscribe("gotoPage", function () {
+
+      new TimelineMax()
+        .to(stereoPanner, half, {
+          pan: -1
+        })
+        .fromTo(stereoPanner, half, {
+          pan: -1
+        }, {
+          pan: 1
+        })
+        .to(stereoPanner, quad, {
+          pan: 0
+        });
+
+      new TimelineMax()
+        .to(lowPassFilter, half, {
+          frequency: 146,
+        })
+        .to(lowPassFilter, half, {
+          frequency: 4000,
+          ease: Power0.easeNone
+        }, "+=" + half);
+    });
+
+    PubSub.subscribe("workPreviewShow", function () {
+      new TimelineMax()
+        .to(lowPassFilter, half, {
+          frequency: 146,
+        });
+    });
+
+    PubSub.subscribe("workPreviewClose", function () {
+      new TimelineMax()
+        .to(lowPassFilter, half, {
+          frequency: 4000,
+          ease: Power0.easeNone
+        });
+    });
+
   });
 
   PubSub.subscribe("audioButtonClicked", function () {
-    if (audio.paused === false)
+    if (sound.playing === true)
     {
       new TimelineMax({
         onComplete: function () {
-          audio.pause();
+          sound.pause();
         }
-      }).to(audio, .5, {
+      }).to(sound, .5, {
         volume: 0,
         ease: Power2.easeOut
       });
     }
     else
     {
-      audio.play();
-      new TimelineMax().to(audio, .5, {
+      sound.play();
+      new TimelineMax().to(sound, .5, {
         volume: maxVolume,
         ease: Power2.easeIn
       });

@@ -42,19 +42,19 @@
       font-size: 18px;
     }
 
-    &:before {
-      content: "<h1>";
-      top: 0;
-    }
-
-    &:after {
-      content: "</h1>";
-      bottom: 0;
-      right: 0;
-      transform: translateX(120%);
-      opacity: 0;
-      transition: opacity .3s ease-out;
-    }
+    //&:before {
+    //  content: "<h1>";
+    //  top: 0;
+    //}
+    //
+    //&:after {
+    //  content: "</h1>";
+    //  bottom: 0;
+    //  right: 0;
+    //  transform: translateX(120%);
+    //  opacity: 0;
+    //  transition: opacity .3s ease-out;
+    //}
 
     &.animation-finished {
       &:after {

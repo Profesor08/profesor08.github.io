@@ -7,6 +7,7 @@ html
 
     include ./favicons
 
+    include ./templates/work-template
 
 
   body.is-loading
@@ -57,27 +58,3 @@ html
         include sections-content/section-contacts
 
     .main-overlay
-
-    .contact-overlay.d-flex.align-items-center
-      .container
-        .row
-          .col-sm-12
-            h2.text-center Contact me
-          .col-sm-12
-            form.w-100(method="POST" action="/sendMessage")
-              .row.justify-content-center
-                .col-sm-12.col-md-8
-                  .form-group
-                    .material-input
-                      label
-                        .placeholder Subject
-                        input.form-control(type="text" name="subject")
-                .col-sm-12.col-md-8
-                  .form-group
-                    .material-input
-                      label
-                        .placeholder Message
-                        textarea.form-control(name="message" rows="3")
-                .col-sm-12.col-md-8
-                  .form-group
-                    button.btn.btn-success Send

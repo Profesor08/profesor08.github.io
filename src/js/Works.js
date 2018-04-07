@@ -1,7 +1,7 @@
 import {TimelineMax} from "gsap";
+import WorkPreview from "./WorkPreview";
 
 (function () {
-
 
   let $works = $(".work-project");
 
@@ -9,17 +9,12 @@ import {TimelineMax} from "gsap";
     let $work = $(this);
     let $image = $work.find(".image");
     let $bubble = $(`<div class="bubble">`);
-    
-    function calcHypotenuse(a, b)
-    {
-      return Math.sqrt(a * a + b * b);
-    }
 
     $image.append($bubble);
 
-    $work.on("mouseenter", function () {
-
-      let size = calcHypotenuse($image.width(), $image.height());
+    // Animate bubble
+    $work.find(".project-container").on("mouseenter", function () {
+      let size = Math.hypot($image.width(), $image.height());
 
       new TimelineMax()
         .fromTo($bubble, .400, {
@@ -36,10 +31,12 @@ import {TimelineMax} from "gsap";
           height: 0,
           opacity: 1
         });
-    });
+    }).on("click", function() {
+      let url = $(this).data("src");
+      let preview = new WorkPreview(url);
 
-    $work.on("mouseleave", function () {
-      // $work.toggleClass("is-active");
+      preview.show();
+
     });
 
   });

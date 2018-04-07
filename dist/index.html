@@ -21,6 +21,22 @@
 <meta name="msapplication-TileColor" content="#FF916E">
 <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#FF916E">
+<template id="work-preview">
+  <div class="work-preview">
+    <div class="close-button" role="button">
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="image-container">
+      <!--.image-background-->
+    </div>
+    <div class="image-loading">Loading...</div>
+    <div class="work-info">
+      <div class="title"></div>
+      <div class="description"></div>
+    </div>
+  </div>
+</template>
   <link href="./css/main.css" rel="stylesheet"></head>
   <body class="is-loading">
     <!-- https://www.nicolasriciotti.com/clients/lpc/#!en/home/exceptions-->
@@ -243,7 +259,7 @@
 <div class="works-container">
   <div class="works-list row flex-wrap">
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/arnel-hasanovic-375269-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/arnel-hasanovic-375269-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -251,7 +267,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/branko-stancevic-417172-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/branko-stancevic-417172-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -259,7 +275,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/edho-pratama-152392-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/edho-pratama-152392-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -267,7 +283,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/fabian-grohs-360566-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/fabian-grohs-360566-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -275,7 +291,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/igor-miske-174209-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/igor-miske-174209-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -283,7 +299,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/ilya-pavlov-87438-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/ilya-pavlov-87438-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -291,7 +307,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/le-buzz-568441-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/le-buzz-568441-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -299,7 +315,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/le-buzz-568591-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/le-buzz-568591-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -307,7 +323,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/lee-campbell-106610-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/lee-campbell-106610-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -315,7 +331,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/igor-ovsyannykov-329196-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/igor-ovsyannykov-329196-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -323,7 +339,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/luca-bravo-217276-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/luca-bravo-217276-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -331,7 +347,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/neonbrand-226736-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/neonbrand-226736-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -339,7 +355,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/thomas-william-304054-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/thomas-william-304054-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -347,7 +363,7 @@
       </div>
     </div>
     <div class="work-project col-sm-12 col-md-6 col-lg-4 col-xl-3">
-      <div class="project-container">
+      <div class="project-container" data-src="images/works/thought-catalog-354861-unsplash.jpg">
         <div class="image embed-responsive embed-responsive-16by9"><img src="images/works/thumb/thought-catalog-354861-unsplash.jpg"></div>
         <div class="work-description">
           <div class="title">Work №1</div>
@@ -396,45 +412,5 @@
       </section>
     </main>
     <div class="main-overlay"></div>
-    <div class="contact-overlay d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <h2 class="text-center">Contact me</h2>
-          </div>
-          <div class="col-sm-12">
-            <form class="w-100" method="POST" action="/sendMessage">
-              <div class="row justify-content-center">
-                <div class="col-sm-12 col-md-8">
-                  <div class="form-group">
-                    <div class="material-input">
-                      <label>
-                        <div class="placeholder">Subject</div>
-                        <input class="form-control" type="text" name="subject">
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-8">
-                  <div class="form-group">
-                    <div class="material-input">
-                      <label>
-                        <div class="placeholder">Message</div>
-                        <textarea class="form-control" name="message" rows="3"></textarea>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-8">
-                  <div class="form-group">
-                    <button class="btn btn-success">Send</button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   <script type="text/javascript" src="js/main.js"></script></body>
 </html>

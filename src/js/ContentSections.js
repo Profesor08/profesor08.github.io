@@ -5,6 +5,8 @@ import {TimelineMax} from "gsap";
   let currentPage = "home";
   let $pages = $(".main [data-page]");
 
+  const animationTime = 3;
+
   PubSub.subscribe("gotoPage", function (msg, data) {
 
     if (currentPage !== data.to)
@@ -24,15 +26,15 @@ import {TimelineMax} from "gsap";
       onComplete: function () {
         $current.removeClass("is-active");
       }
-    }).fromTo($current, .75, {
+    }).fromTo($current, animationTime / 4, {
       opacity: 1
     }, {
       opacity: 0
-    }).fromTo($next, .75, {
+    }).fromTo($next, animationTime / 4, {
       opacity: 0
     }, {
       opacity: 1
-    });
+    }, "+=" + (animationTime / 2));
 
     currentPage = page;
   }

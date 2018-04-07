@@ -8,6 +8,8 @@ import {TimelineMax} from "gsap";
   const $fluidItemsBig = $pagination.find(".fluid-item.full-size");
   const $fluidItemsSmall = $pagination.find(".fluid-item:not(.full-size)");
 
+  const animationTime = 3;
+
   let ready = true;
   let currentIndex = 0;
   let previousIndex = 0;
@@ -27,25 +29,25 @@ import {TimelineMax} from "gsap";
 
     let direction = Math.random() < .5 ? -1 : 1;
 
-    tl.to($fluidItemsBig.get(0), .8, {
+    tl.to($fluidItemsBig.get(0), animationTime / 2, {
       top: targetTop,
       ease: Power1.easeInOut,
       onUpdate: function () {
-        let val = this.time() * (1 / .8);
+        let val = this.time() * (1 / (animationTime / 2));
         let left = 5 * Math.sin(val * Math.PI) * direction + 10;
         this.target.style.setProperty("left", left + "px");
       }
     });
 
-    tl.staggerTo($fluidItemsSmall, .8, {
+    tl.staggerTo($fluidItemsSmall, animationTime / 2, {
       top: targetTop + 3,
       ease: Power1.easeInOut,
       onUpdate: function () {
-        let val = this.time() * (1 / .8);
+        let val = this.time() * (1 / (animationTime / 2));
         let left = 3 + 5 * Math.sin(val * Math.PI) * direction + 10;
         this.target.style.setProperty("left", left + "px");
       }
-    }, 0.1, "-=0.7");
+    }, 0.1, "-=1.3");
 
 
   }
@@ -77,5 +79,6 @@ import {TimelineMax} from "gsap";
   PubSub.subscribe("pageChanged", function (msg, data) {
     setActiveItem(data.page);
     ready = true;
+    currentPage = data.page;
   });
 })();
