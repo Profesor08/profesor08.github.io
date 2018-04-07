@@ -84,6 +84,10 @@ import Pizzicato from "pizzicato";
         });
     });
 
+    // setInterval(function () {
+    //   console.log(lowPassFilter.frequency);
+    // }, 200);
+
   });
 
   PubSub.subscribe("audioButtonClicked", function () {

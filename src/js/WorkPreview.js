@@ -10,6 +10,7 @@ export default function WorkPreview(url, title, description) {
   let img = new Image();
   let tl = new TimelineMax();
   let imageLoaded = false;
+  let isActive = false;
 
   $(document.body).append($container);
 
@@ -54,6 +55,8 @@ export default function WorkPreview(url, title, description) {
         opacity: 1
       });
 
+    isActive = true;
+
     PubSub.publish("workPreviewShow");
   }
 
@@ -70,7 +73,11 @@ export default function WorkPreview(url, title, description) {
         }
       });
 
-    PubSub.publish("workPreviewClose");
+    if (isActive === true) {
+      PubSub.publish("workPreviewClose");
+    }
+
+    isActive = false;
   }
 
   return {
