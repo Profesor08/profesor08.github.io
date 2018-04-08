@@ -140,7 +140,6 @@ import gradientColor from "gradient-color";
           ctx.fillStyle = circle.color;
           ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
           ctx.fill();
-          ctx.stroke();
         }
 
         circle.outerRadius -= .5 * mobileSizeMultiplier;
@@ -157,7 +156,6 @@ import gradientColor from "gradient-color";
           ctx.arc(circle.x, circle.y, circle.outerRadius, 0, 2 * Math.PI);
           ctx.stroke();
         }
-
 
       });
     }

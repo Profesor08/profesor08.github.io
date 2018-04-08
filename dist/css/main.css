@@ -6568,9 +6568,11 @@ section a, a.design-link {
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%, 0);
-    width: 100%;
-    height: 100%; }
+    transform: translate(-50%, 0); }
+    @media (max-width: 767px) {
+      .main .background {
+        width: 100%;
+        height: 100%; } }
 
 .main-overlay {
   position: absolute;
@@ -7442,3 +7444,5 @@ section a, a.design-link {
 .noty_theme__nest.noty_type__success {
   background-color: #06D6A0;
   color: #fff; }
+
+/*# sourceMappingURL=main.css.map*/

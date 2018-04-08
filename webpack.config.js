@@ -33,6 +33,8 @@ process.noDeprecation = true;
 
 const common = merge([
   {
+    devtool: "source-map",
+
     entry: PATHS.src.js + "/app.js",
 
     output: {
@@ -49,6 +51,8 @@ const common = merge([
       // new webpack.optimize.CommonsChunkPlugin({
       //   name: "common"
       // }),
+
+      // new ExtractTextPlugin('css/main.css'),
 
       new webpack.ProvidePlugin({
         'window.jQuery'    : 'jquery',
@@ -86,9 +90,6 @@ module.exports = function (env) {
   {
     return merge([
       common,
-      {
-        devtool: "source-map"
-      },
       devServer(),
       sass(),
       css(),

@@ -40,6 +40,7 @@ window.jQuery = $;
 // http://0.0.0.0:8997
 // http://127.0.0.1:41017
 
+document.body.classList.remove("is-loading");
 
 function isTouchDevice()
 {
