@@ -2,6 +2,7 @@ import "pixi.js";
 import {TimelineMax, Power3} from "gsap";
 import Perlin from "./Perlin";
 import PubSub from "pubsub-js";
+import Ticker from "./Ticker";
 
 (function () {
 
@@ -41,9 +42,6 @@ import PubSub from "pubsub-js";
 
   // PIXI loader for loading textures
   const loader = PIXI.loader;
-
-  // PIXI Ticker
-  const ticker = PIXI.ticker.shared;
 
   // PIXI containers
   let mainContainer = new PIXI.Container();
@@ -402,7 +400,7 @@ import PubSub from "pubsub-js";
       height: window.innerHeight
     });
 
-    ticker.add(function () {
+    Ticker.add(function () {
       if (window.innerWidth !== width || window.innerHeight !== height) {
         resizeScene({
           width: window.innerWidth,

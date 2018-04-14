@@ -1,4 +1,5 @@
 import PubSub from "pubsub-js";
+import Ticker from "./Ticker";
 
 (function () {
 
@@ -19,8 +20,6 @@ import PubSub from "pubsub-js";
 
   function animate()
   {
-    requestAnimationFrame(animate);
-
     if (analyser === null)
     {
       return;
@@ -44,7 +43,7 @@ import PubSub from "pubsub-js";
     $speaker.attr("transform", `scale(${scale})`);
   }
 
-  animate();
+  Ticker.add(animate);
 
   PubSub.subscribe("backgroundAudioReady", function (msg, data) {
     analyser = data.analyser;

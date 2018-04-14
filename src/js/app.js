@@ -3,11 +3,6 @@ import "normalize.css";
 import "../scss/main.scss";
 
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
-// import "./ContactOverlay";
-// import "./MaterialInput";
-// import Particles from "./Particles";
-
 import PubSub from "pubsub-js";
 import Hamburger from "./Hamburger";
 import Sidebar from "./Sidebar";
@@ -25,13 +20,9 @@ import "./ContentSections";
 import "./ContactForm";
 import "./Works";
 import "./Home3DMove";
-import scriptjs from "scriptjs";
 
 window.$ = $;
 window.jQuery = $;
-
-// new Particles("particles");
-// $(".material-input").materialInput();
 
 // send email
 
@@ -58,21 +49,11 @@ const hamburger = new Hamburger(".hamburger");
 const sidebar = new Sidebar(".sidebar");
 const mainContent = new MainContent(".main");
 
-// PubSub.publish("openSidebar");
-
-// PubSub.publish("gotoPage", {
-//   to: "works"
-// });
-
 hamburger.on("open", function () {
   PubSub.publish("openSidebar");
 }).on("close", function () {
   PubSub.publish("closeSidebar");
 });
-
-// PubSub.subscribe("swipeRight", function () {
-//   PubSub.publish("openSidebar");
-// });
 
 // $(".main").on("mousewheel", function (event) {
 //   if (event.deltaY < 0)
