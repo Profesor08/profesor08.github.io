@@ -7268,11 +7268,11 @@ section a, a.design-link {
     transform: translate(0, -50%); }
   @media (max-width: 767px) {
     .volume-control {
-      top: 100%;
-      left: 0;
-      transform: translate(0, 0);
-      width: 100%;
-      height: calc(150px + 20px); }
+      width: 50px;
+      height: calc(150px + 20px);
+      top: 85px;
+      right: 30px;
+      transform: translate(0, 0); }
       .volume-control input {
         top: 50%;
         left: 25%;
