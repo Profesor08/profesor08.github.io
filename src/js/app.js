@@ -20,6 +20,7 @@ import "./ContentSections";
 import "./ContactForm";
 import "./Works";
 import "./Home3DMove";
+import "./Scrolling";
 
 window.$ = $;
 window.jQuery = $;
@@ -54,17 +55,6 @@ hamburger.on("open", function () {
 }).on("close", function () {
   PubSub.publish("closeSidebar");
 });
-
-// $(".main").on("mousewheel", function (event) {
-//   if (event.deltaY < 0)
-//   {
-//     PubSub.publish("scrollDown");
-//   }
-//   else
-//   {
-//     PubSub.publish("scrollUp");
-//   }
-// });
 
 $(window).on("resize", function () {
   PubSub.publish("windowResize");

@@ -8,7 +8,7 @@ import Pizzicato from "pizzicato";
   const audioSourceUrl = require("../audio/xmas.evs-loop.mp3");
   // const audioSourceUrl = require("../audio/Portugal. The Man - Feel It Still.mp3");
   // const audioSourceUrl = require("../audio/Lord of the Isles - Teach Them No Hate.mp3");
-  const maxVolume = .1;
+  const maxVolume = 1.;
   const animationTime = 3;
 
   const sound = new Pizzicato.Sound({

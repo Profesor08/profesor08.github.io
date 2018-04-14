@@ -12,6 +12,7 @@
   height: calc(100% - 180px);
   overflow-x: hidden;
   overflow-y: auto;
+  touch-action: pan-y;
 
   @include media-breakpoint-down(md) {
     //margin: 90px 15px 15px 15px;

@@ -21,6 +21,7 @@
   width: 100%;
   max-width: 540px;
   margin: 0 15px;
+  padding-bottom: 30px;
 
   @include media-breakpoint-down(md) {
     margin: 0;
@@ -32,6 +33,7 @@
     margin-top: 100px;
     overflow: auto;
     overflow-x: hidden;
+    touch-action: pan-y;
 
     .form-row {
       margin: 0 15px;
