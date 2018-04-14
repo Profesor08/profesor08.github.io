@@ -13,6 +13,7 @@ const images = require("./webpack/images");
 const audio = require("./webpack/audio");
 const babel = require("./webpack/babel");
 const clean = require("./webpack/clean");
+const glsl = require("./webpack/glsl");
 
 const sourcePath = path.join(__dirname, "src");
 const distPath = path.join(__dirname, "dist");
@@ -63,7 +64,8 @@ const common = merge([
     ]
   },
   pug(),
-  images()
+  images(),
+  glsl()
 ]);
 
 
