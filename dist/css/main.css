@@ -6936,6 +6936,7 @@ section a, a.design-link {
   width: 100%;
   max-width: 540px;
   margin: 0 15px;
+  padding-bottom: 30px;
   /* Firefox < 19 */
   /* Firefox > 19 */
   /* Internet Explorer 10 */ }
@@ -6948,7 +6949,8 @@ section a, a.design-link {
       max-height: calc(100% - 100px);
       margin-top: 100px;
       overflow: auto;
-      overflow-x: hidden; }
+      overflow-x: hidden;
+      touch-action: pan-y; }
       .contact-form .form-row {
         margin: 0 15px; }
       .contact-form .title, .contact-form .sub-title {
@@ -7029,7 +7031,8 @@ section a, a.design-link {
   width: calc(100% - 200px);
   height: calc(100% - 180px);
   overflow-x: hidden;
-  overflow-y: auto; }
+  overflow-y: auto;
+  touch-action: pan-y; }
   @media (max-width: 991px) {
     .works-list {
       margin: 0;
