@@ -73,8 +73,6 @@ import Ticker from "./Ticker";
     });
   }
 
-  let $main = $(".main");
-
   let $button = $(".audio-button");
 
   let $line1 = $button.find(".audio-line-1");
@@ -127,7 +125,7 @@ import Ticker from "./Ticker";
     closeVolume();
   });
 
-  $main.on("click", function () {
+  $(".main, .pagination, .hamburger, .sidebar").on("click", function () {
     closeVolume();
   });
 
