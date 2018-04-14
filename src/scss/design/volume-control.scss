@@ -1,0 +1,46 @@
+@import "input-range";
+
+.volume-control {
+  position: absolute;
+  top: 45px;
+  right: 80px;
+  z-index: 50;
+  transform: translate(0, -50%);
+
+  width: calc(150px + 20px);
+  height: 40px;
+
+  display: none;
+  align-items: center;
+  opacity: 0;
+
+  &.is-active {
+    display: flex;
+  }
+
+  input {
+    width: 150px;
+    margin: 0 10px;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+  }
+
+  @include media-breakpoint-down(sm) {
+    top: 100%;
+    left: 0;
+    transform: translate(0, 0);
+
+    width: 100%;
+    height: calc(150px + 20px);
+
+    input {
+      top: 50%;
+      left: 25%;
+      transform-origin: 50% 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+    }
+  }
+}

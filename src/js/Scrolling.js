@@ -44,31 +44,14 @@ import Hammer from "hammerjs";
 
   addWheepSwipe(home, "swipe", function() {
     PubSub.publish("gotoPage", {
-      to: "works"
+      to: "works",
+      direction: -1
     });
   }, function() {
     PubSub.publish("gotoPage", {
-      to: "contact"
+      to: "contact",
+      direction: 1
     });
-  });
-
-
-  // Contact screen scrolling actions
-  const contact = document.querySelector(".contact");
-  const contactForm = contact.querySelector(".contact-form");
-
-  addWheepSwipe(contact, "pan", function() {
-    if (contactForm !== null && (contactForm.scrollHeight - contactForm.clientHeight === contactForm.scrollTop)) {
-      PubSub.publish("gotoPage", {
-        to: "home"
-      });
-    }
-  }, function() {
-    if (contactForm !== null && contactForm.scrollTop === 0) {
-      PubSub.publish("gotoPage", {
-        to: "works"
-      });
-    }
   });
 
 
@@ -79,13 +62,36 @@ import Hammer from "hammerjs";
   addWheepSwipe(works, "pan", function() {
     if (worksList !== null && (worksList.scrollHeight - worksList.clientHeight === worksList.scrollTop)) {
       PubSub.publish("gotoPage", {
-        to: "contact"
+        to: "contact",
+        direction: -1
       });
     }
   }, function() {
     if (worksList !== null && worksList.scrollTop === 0) {
       PubSub.publish("gotoPage", {
-        to: "home"
+        to: "home",
+        direction: 1
+      });
+    }
+  });
+
+
+  // Contact screen scrolling actions
+  const contact = document.querySelector(".contact");
+  const contactForm = contact.querySelector(".contact-form");
+
+  addWheepSwipe(contact, "pan", function() {
+    if (contactForm !== null && (contactForm.scrollHeight - contactForm.clientHeight === contactForm.scrollTop)) {
+      PubSub.publish("gotoPage", {
+        to: "home",
+        direction: -1
+      });
+    }
+  }, function() {
+    if (contactForm !== null && contactForm.scrollTop === 0) {
+      PubSub.publish("gotoPage", {
+        to: "works",
+        direction: 1
       });
     }
   });

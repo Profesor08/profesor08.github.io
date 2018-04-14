@@ -8,7 +8,7 @@ import Pizzicato from "pizzicato";
   const audioSourceUrl = require("../audio/xmas.evs-loop.mp3");
   // const audioSourceUrl = require("../audio/Portugal. The Man - Feel It Still.mp3");
   // const audioSourceUrl = require("../audio/Lord of the Isles - Teach Them No Hate.mp3");
-  const maxVolume = 1.;
+  const maxVolume = localStorage["soundVolume"] ? parseFloat(localStorage["soundVolume"]) : .3;
   const animationTime = 3;
 
   const sound = new Pizzicato.Sound({
@@ -84,10 +84,11 @@ import Pizzicato from "pizzicato";
         });
     });
 
-    // setInterval(function () {
-    //   console.log(lowPassFilter.frequency);
-    // }, 200);
+  });
 
+  PubSub.subscribe("volumeChanged", function (msg, data) {
+    sound.volume = data.volume;
+    localStorage["soundVolume"] = data.volume;
   });
 
   PubSub.subscribe("audioButtonClicked", function () {

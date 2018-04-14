@@ -4,12 +4,13 @@ import {TimelineMax} from "gsap";
 (function () {
   let currentPage = "home";
   let $pages = $(".main [data-page]");
+  let isAnimating = false;
 
   const animationTime = 3;
 
   PubSub.subscribe("gotoPage", function (msg, data) {
 
-    if (currentPage !== data.to)
+    if (isAnimating === false && currentPage !== data.to)
     {
       showPage(data.to);
     }
@@ -17,6 +18,7 @@ import {TimelineMax} from "gsap";
 
   function showPage(page)
   {
+    isAnimating = true;
     let $current = $pages.filter(`[data-page="${currentPage}"]`);
     let $next = $pages.filter(`[data-page="${page}"]`);
 
@@ -25,6 +27,7 @@ import {TimelineMax} from "gsap";
     new TimelineMax({
       onComplete: function () {
         $current.removeClass("is-active");
+        isAnimating = false;
       }
     }).fromTo($current, animationTime / 4, {
       opacity: 1
