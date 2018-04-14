@@ -19,6 +19,10 @@ import Ticker from "./Ticker";
     transformStyle: "preserve-3d",
   });
 
+  $greetings.css({
+    transformOrigin: "50% 50% -300px"
+  });
+
   let hammer = new Hammer($main.get(0));
   hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL, threshold: 0 });
 
@@ -32,13 +36,11 @@ import Ticker from "./Ticker";
     pos.my = event.pageY;
   });
 
-  let rect = $greetings.get(0).getBoundingClientRect();
-
   let pos = {
-    mx: rect.x + rect.width / 2,
-    my: rect.y + rect.height / 2,
-    x: rect.x + rect.width / 2,
-    y: rect.y + rect.height / 2
+    mx: window.innerWidth / 2,
+    my: window.innerHeight / 2,
+    x: window.innerWidth / 2,
+    y: window.innerWidth / 2,
   };
 
   function animate() {
@@ -50,11 +52,8 @@ import Ticker from "./Ticker";
       let halfW = window.innerWidth / 2;
       let halfH = window.innerHeight / 2;
 
-      let rotateY = Math.map(Math.abs(pos.x - halfW), 0, halfW, 0, 10);
+      let rotateY = Math.map(Math.abs(pos.x - halfW), 0, halfW, 0, 20);
       let rotateX = Math.map(Math.abs(pos.y - halfH), 0, halfH, 0, 20);
-
-      let left = Math.map(pos.x, 0, window.innerWidth, 0, 200);
-      let top = Math.map(pos.y, 0, window.innerHeight, -100, 100);
 
       if (pos.x - halfW < 0) {
         rotateY *= -1;
@@ -65,7 +64,7 @@ import Ticker from "./Ticker";
       }
 
       $greetings.css({
-        transform: `perspective(900px) translate(${left}px, ${top}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+        transform: `perspective(900px) translateZ(-300px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
       });
     }
   }
