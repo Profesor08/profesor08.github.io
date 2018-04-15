@@ -2463,7 +2463,6 @@ return;
   let circles = [];
   let radiusMultiplier = 1;
   let bufferLength = 256;
-  let audio = null;
   let analyser = null;
   let colorGradient = gradientColor(colors, bufferLength);//.map(color => new Color(color).rgbNumber());
 
@@ -2599,7 +2598,6 @@ return;
   Ticker.add(animate);
 
   PubSub.subscribe("backgroundAudioReady", function (msg, data) {
-    audio = data.audio;
     analyser = data.analyser;
   });
 
