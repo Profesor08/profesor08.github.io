@@ -7278,6 +7278,41 @@ section a, a.design-link {
         left: 25%;
         transform-origin: 50% 50%;
         transform: translate(-50%, -50%) rotate(-90deg); } }
+
+.next-track {
+  position: absolute;
+  top: 70px;
+  right: 50px;
+  z-index: 50;
+  width: 20px;
+  height: 20px; }
+  @media (max-width: 767px) {
+    .next-track {
+      top: 35px;
+      right: 80px; } }
+  .next-track svg {
+    width: 100%;
+    height: 100%;
+    fill: white;
+    transform: rotate(-90deg); }
+    .next-track svg .arrow-1 {
+      opacity: .5;
+      transition: ease all 300ms; }
+    .next-track svg .arrow-2 {
+      opacity: .6;
+      transition: ease all 300ms; }
+    .next-track svg .arrow-3 {
+      transition: ease all 300ms; }
+  .next-track:hover {
+    cursor: pointer; }
+    .next-track:hover .arrow-1 {
+      fill: #f4511e; }
+    .next-track:hover .arrow-2 {
+      transform: translateY(3%);
+      fill: #f4511e; }
+    .next-track:hover .arrow-3 {
+      transform: translateY(5%);
+      fill: #f4511e; }
 .noty_layout_mixin, #noty_layout__top, #noty_layout__topLeft, #noty_layout__topCenter, #noty_layout__topRight, #noty_layout__bottom, #noty_layout__bottomLeft, #noty_layout__bottomCenter, #noty_layout__bottomRight, #noty_layout__center, #noty_layout__centerLeft, #noty_layout__centerRight {
   position: fixed;
   margin: 0;
