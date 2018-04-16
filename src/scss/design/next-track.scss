@@ -1,0 +1,54 @@
+
+@import "vars";
+.next-track {
+  position: absolute;
+  top: 70px;
+  right: 50px;
+  z-index: 50;
+  width: 20px;
+  height: 20px;
+
+  @include media-breakpoint-down(sm) {
+    top: 35px;
+    right: 80px;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: white;
+    transform: rotate(-90deg);
+
+    .arrow-1 {
+      opacity: .5;
+      transition: ease all 300ms;
+    }
+
+    .arrow-2 {
+      opacity: .6;
+      transition: ease all 300ms;
+    }
+
+    .arrow-3 {
+      transition: ease all 300ms;
+    }
+  }
+  
+  &:hover {
+    cursor: pointer;
+
+    .arrow-1 {
+      fill: $secondary-color;
+    }
+
+    .arrow-2 {
+      transform: translateY(3%);
+      fill: $secondary-color;
+    }
+
+    .arrow-3 {
+      transform: translateY(5%);
+      fill: $secondary-color;
+    }
+  }
+}
