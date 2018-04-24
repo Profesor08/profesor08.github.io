@@ -63,7 +63,9 @@ import buildUrl from "build-url";
   });
 
   $nextButton.on("click", function () {
-    sound.stop();
+    if (tracks[currentTrack].sound) {
+      tracks[currentTrack].sound.stop();
+    }
   });
 
   PubSub.subscribe("volumeChanged", function (msg, data) {
