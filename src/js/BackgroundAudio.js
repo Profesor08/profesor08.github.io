@@ -21,17 +21,6 @@ import buildUrl from "build-url";
     return SC_Url(track.stream_url);
   }
 
-  function getnextTrack() {
-    if (currentTrack + 1 === tracks.length) {
-      currentTrack = 0;
-    }
-    else {
-      currentTrack += 1;
-    }
-
-    return tracks[currentTrack];
-  }
-
   let tracksUrl = SC_Url("https://api.soundcloud.com/resolve", {
     url: "https://soundcloud.com/profesor08/likes"
   });
@@ -43,7 +32,6 @@ import buildUrl from "build-url";
   let animationTime = 3;
   let tracks = [];
   let currentTrack = -1;
-  let sound = null;
   let $nextButton = $(".next-track");
 
   axios.get(tracksUrl).then(function (res) {
@@ -63,8 +51,18 @@ import buildUrl from "build-url";
   });
 
   $nextButton.on("click", function () {
-    if (tracks[currentTrack].sound) {
-      tracks[currentTrack].sound.stop();
+    if (currentTrack < 0) {
+      return;
+    }
+
+    let current = tracks[currentTrack];
+    let next = tracks[getNextTrackId(currentTrack)];
+
+    if (current.sound !== undefined && next.sound !== undefined && next.sound.isReady === true) {
+      try {
+        current.sound.stop();
+      }
+      catch(err) {}
     }
   });
 
@@ -106,6 +104,8 @@ import buildUrl from "build-url";
           sound.addEffect(lowPassFilter);
           sound.connect(analyser);
 
+          sound.isReady = true;
+
           if (callback instanceof Function) {
             callback(sound);
           }
@@ -116,11 +116,17 @@ import buildUrl from "build-url";
             analyser: analyser
           });
 
+          currentTrack = id;
+
           loadTrack(getNextTrackId(id));
         });
 
         sound.on("end", function () {
-          tracks[getNextTrackId(id)].sound.play();
+          let next = tracks[getNextTrackId(id)];
+
+          if (next.sound !== undefined && next.sound.isReady === true) {
+            next.sound.play();
+          }
         });
 
         track.sound = sound;
